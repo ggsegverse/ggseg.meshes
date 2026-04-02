@@ -17,3 +17,4 @@
 ^package-lock\.json$
 ^vignettes/articles$
 ^README\.html$
+^codemeta\.json$
