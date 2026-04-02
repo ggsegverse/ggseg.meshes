@@ -1,0 +1,32 @@
+Package: ggseg.meshes
+Title: Additional Brain Surface Meshes for the 'ggseg' Ecosystem
+Version: 0.0.1.9000
+Authors@R:
+    person("Athanasia Mo", "Mowinckel", , "a.m.mowinckel@psykologi.uio.no", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0002-5756-0223"))
+Description: Provides additional brain surface meshes for cortical and
+    cerebellar visualisation in the 'ggseg' ecosystem. Cortical meshes
+    include 'fsaverage5' pial, white, semi-inflated, sphere, smoothwm, and
+    orig surfaces. Cerebellar meshes include the 'SUIT' flatmap surface.
+    All meshes follow the same vertices/faces data frame format used by
+    'ggseg.formats' and 'ggseg3d'.
+License: MIT + file LICENSE
+Depends:
+    R (>= 4.1.0)
+Suggests:
+    freesurfer,
+    freesurferformats,
+    gifti,
+    ggseg.formats,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Config/Needs/website: ggsegverse/ggseg.docs
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.3
+URL: https://github.com/ggsegverse/ggseg.meshes,
+    https://ggsegverse.github.io/ggseg.meshes/
+BugReports: https://github.com/ggsegverse/ggseg.meshes/issues
