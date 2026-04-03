@@ -5,10 +5,8 @@ Authors@R:
     person("Athanasia Mo", "Mowinckel", , "a.m.mowinckel@psykologi.uio.no", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5756-0223"))
 Description: Provides additional brain surface meshes for cortical and
-    cerebellar visualisation in the 'ggseg' ecosystem. Cortical meshes
-    include 'fsaverage5' pial, white, semi-inflated, sphere, smoothwm, and
-    orig surfaces. Cerebellar meshes include the 'SUIT' flatmap surface.
-    All meshes follow the same vertices/faces data frame format used by
+    cerebellar visualisation in the 'ggsegverse' ecosystem. All meshes follow the same 
+    vertices/faces data frame format used by
     'ggseg.formats' and 'ggseg3d'.
 License: MIT + file LICENSE
 Depends:

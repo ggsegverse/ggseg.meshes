@@ -4,7 +4,7 @@
 \name{ggseg.meshes-package}
 \alias{ggseg.meshes}
 \alias{ggseg.meshes-package}
-\title{ggseg.meshes: Additional Brain Surface Meshes for the 'ggseg' Ecosystem}
+\title{ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem}
 \description{
 Provides additional brain surface meshes for cortical and cerebellar visualisation in the 'ggseg' ecosystem. Cortical meshes include 'fsaverage5' pial, white, semi-inflated, sphere, smoothwm, and orig surfaces. Cerebellar meshes include the 'SUIT' flatmap surface. All meshes follow the same vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
 }
