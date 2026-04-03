@@ -1,4 +1,4 @@
-# ggseg.meshes: Additional Brain Surface Meshes for the 'ggseg' Ecosystem
+# ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem
 
 Provides additional brain surface meshes for cortical and cerebellar
 visualisation in the 'ggseg' ecosystem. Cortical meshes include

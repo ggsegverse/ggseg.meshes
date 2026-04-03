@@ -7,14 +7,20 @@ visualising cerebellar parcellations without 3D rendering.
 ## Usage
 
 ``` r
-get_cerebellar_flatmap()
+get_cerebellar_flatmap(surface = .cerebellar_surfaces)
 ```
+
+## Arguments
+
+- surface:
+
+  Surface type. Currently only `"suit_flat"`.
 
 ## Value
 
 A list with `vertices` (data.frame with x, y, z) and `faces` (data.frame
 with i, j, k, 0-based indices matching `ggseg.formats` convention for
-cerebellar meshes).
+cerebellar meshes). Has attribute `face_index_base = 0L`.
 
 ## Details
 

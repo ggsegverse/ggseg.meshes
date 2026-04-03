@@ -7,10 +7,7 @@ surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 ## Usage
 
 ``` r
-get_cortical_mesh(
-  hemisphere = c("lh", "rh"),
-  surface = c("pial", "white", "semi-inflated", "sphere", "smoothwm", "orig")
-)
+get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 ```
 
 ## Arguments
@@ -27,7 +24,7 @@ get_cortical_mesh(
 ## Value
 
 A list with `vertices` (data.frame with x, y, z) and `faces` (data.frame
-with i, j, k, 1-based indices).
+with i, j, k, 1-based indices). Has attribute `face_index_base = 1L`.
 
 ## Examples
 

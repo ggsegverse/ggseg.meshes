@@ -28,6 +28,13 @@ available_cortical_surfaces()
 | **smoothwm**      | Smoothed white matter           | Smoother alternative to white surface                 |
 | **orig**          | Pre-topology-correction surface | Debugging surface reconstruction                      |
 
+|                                    |                                        |                                                  |
+|:----------------------------------:|:--------------------------------------:|:------------------------------------------------:|
+|   ![pial](figures/mesh-pial.png)   |    ![white](figures/mesh-white.png)    | ![semi-inflated](figures/mesh-semi-inflated.png) |
+|                pial                |                 white                  |                  semi-inflated                   |
+| ![sphere](figures/mesh-sphere.png) | ![smoothwm](figures/mesh-smoothwm.png) |          ![orig](figures/mesh-orig.png)          |
+|               sphere               |                smoothwm                |                       orig                       |
+
 ### Cerebellar
 
 ``` r
@@ -40,6 +47,10 @@ with 28,935 vertices. Vertex indices from cerebellar atlases map
 directly to this surface since it shares the same vertex space as the
 SUIT 3D pial mesh in ggseg.formats (minus the 1,078 peduncular cap
 vertices).
+
+![SUIT cerebellar flatmap](figures/mesh-suit_flat.png)
+
+SUIT cerebellar flatmap
 
 ## Accessing meshes
 

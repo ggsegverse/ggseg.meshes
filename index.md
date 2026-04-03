@@ -89,19 +89,6 @@ ggseg3d(atlas = dk(), surface = "pial") |>
   pan_camera("left lateral")
 ```
 
-## Rebuilding meshes
-
-The mesh data is built from FreeSurfer and SUIT surfaces using scripts
-in `data-raw/`. To regenerate:
-
-``` r
-source("data-raw/make_cortical_meshes.R")
-source("data-raw/make_cerebellar_meshes.R")
-```
-
-This requires FreeSurfer (with fsaverage5) and the `freesurferformats`
-and `gifti` R packages.
-
 ## Citation
 
 Mowinckel & Vidal-Piñeiro (2020). *Visualization of Brain Statistics
