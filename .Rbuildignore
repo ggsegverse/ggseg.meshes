@@ -18,3 +18,4 @@
 ^vignettes/articles$
 ^README\.html$
 ^codemeta\.json$
+^CRAN-SUBMISSION$

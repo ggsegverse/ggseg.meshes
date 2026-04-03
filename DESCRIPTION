@@ -14,6 +14,8 @@ Description: Provides additional brain surface meshes for cortical and
 License: MIT + file LICENSE
 Depends:
     R (>= 4.1.0)
+Imports:
+    cli
 Suggests:
     freesurfer,
     freesurferformats,

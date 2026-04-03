@@ -44,8 +44,13 @@ describe("available_cortical_surfaces()", {
   it("returns all surface names", {
     surfs <- available_cortical_surfaces()
     expected <- c(
-      "pial", "white", "semi-inflated",
-      "sphere", "smoothwm", "orig"
+      "pial",
+      "white",
+      "midthickness",
+      "semi-inflated",
+      "sphere",
+      "smoothwm",
+      "orig"
     )
     expect_equal(surfs, expected)
   })

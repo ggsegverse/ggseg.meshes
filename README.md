@@ -27,6 +27,7 @@ All cortical meshes are at fsaverage5 resolution (10,242 vertices,
 |-----------------|---------------------------------------------|
 | `pial`          | Grey matter / CSF boundary                  |
 | `white`         | Grey / white matter boundary                |
+| `midthickness`  | Midpoint of pial and white surfaces         |
 | `semi-inflated` | 35/65 blend of white and inflated           |
 | `sphere`        | Spherical registration surface              |
 | `smoothwm`      | Smoothed white matter surface               |
@@ -81,8 +82,8 @@ str(mesh)
 
 ``` r
 available_cortical_surfaces()
-#> [1] "pial"          "white"         "semi-inflated" "sphere"       
-#> [5] "smoothwm"      "orig"
+#> [1] "pial"          "white"         "midthickness"  "semi-inflated"
+#> [5] "sphere"        "smoothwm"      "orig"
 available_cerebellar_surfaces()
 #> [1] "suit_flat"
 ```

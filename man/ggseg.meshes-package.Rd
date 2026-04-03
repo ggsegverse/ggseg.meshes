@@ -6,7 +6,7 @@
 \alias{ggseg.meshes-package}
 \title{ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem}
 \description{
-Provides additional brain surface meshes for cortical and cerebellar visualisation in the 'ggseg' ecosystem. Cortical meshes include 'fsaverage5' pial, white, semi-inflated, sphere, smoothwm, and orig surfaces. Cerebellar meshes include the 'SUIT' flatmap surface. All meshes follow the same vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
+Provides additional brain surface meshes for cortical and cerebellar visualisation in the 'ggsegverse' ecosystem. All meshes follow the same vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
 }
 \seealso{
 Useful links:
@@ -19,6 +19,11 @@ Useful links:
 }
 \author{
 \strong{Maintainer}: Athanasia Mo Mowinckel \email{a.m.mowinckel@psykologi.uio.no} (\href{https://orcid.org/0000-0002-5756-0223}{ORCID})
+
+Other contributors:
+\itemize{
+  \item Center for Lifespan Changes in Brain and Cognition (LCBC), University of Oslo [copyright holder]
+}
 
 }
 \keyword{internal}

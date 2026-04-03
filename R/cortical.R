@@ -1,5 +1,5 @@
 .cortical_surfaces <- c(
-  "pial", "white", "semi-inflated",
+  "pial", "white", "midthickness", "semi-inflated",
   "sphere", "smoothwm", "orig"
 )
 
@@ -10,8 +10,8 @@
 #' 20,480 faces per hemisphere).
 #'
 #' @param hemisphere `"lh"` or `"rh"`
-#' @param surface Surface type: `"pial"`, `"white"`, `"semi-inflated"`,
-#'   `"sphere"`, `"smoothwm"`, or `"orig"`
+#' @param surface Surface type: `"pial"`, `"white"`, `"midthickness"`,
+#'   `"semi-inflated"`, `"sphere"`, `"smoothwm"`, or `"orig"`
 #'
 #' @return A list with `vertices` (data.frame with x, y, z) and `faces`
 #'   (data.frame with i, j, k, 1-based indices).
@@ -31,11 +31,12 @@ get_cortical_mesh <- function(
     surface,
     "pial" = brain_mesh_pial,
     "white" = brain_mesh_white,
+    "midthickness" = brain_mesh_midthickness,
     "semi-inflated" = brain_mesh_semi_inflated,
     "sphere" = brain_mesh_sphere,
     "smoothwm" = brain_mesh_smoothwm,
     "orig" = brain_mesh_orig,
-    stop("Unknown surface: ", surface)
+    cli::cli_abort("Unknown surface: {.val {surface}}")
   )
 
   mesh <- mesh_data[[hemisphere]]

@@ -9,8 +9,8 @@ get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 \arguments{
 \item{hemisphere}{\code{"lh"} or \code{"rh"}}
 
-\item{surface}{Surface type: \code{"pial"}, \code{"white"}, \code{"semi-inflated"},
-\code{"sphere"}, \code{"smoothwm"}, or \code{"orig"}}
+\item{surface}{Surface type: \code{"pial"}, \code{"white"}, \code{"midthickness"},
+\code{"semi-inflated"}, \code{"sphere"}, \code{"smoothwm"}, or \code{"orig"}}
 }
 \value{
 A list with \code{vertices} (data.frame with x, y, z) and \code{faces}

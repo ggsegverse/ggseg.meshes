@@ -36,6 +36,7 @@ available_cortical_surfaces()
 |---------|-------------|----------|
 | **pial** | Grey matter / CSF boundary | Anatomically accurate rendering |
 | **white** | Grey / white matter boundary | White matter surface visualisation |
+| **midthickness** | Midpoint of pial + white | HCP-style analyses, functional data sampling |
 | **semi-inflated** | 35/65 blend of white + inflated | Compromise between anatomical accuracy and visibility |
 | **sphere** | Spherical registration surface | Surface-based registration, QC |
 | **smoothwm** | Smoothed white matter | Smoother alternative to white surface |
@@ -43,10 +44,12 @@ available_cortical_surfaces()
 
 | | | |
 |:---:|:---:|:---:|
-| ![pial](figures/mesh-pial.png){width=200} | ![white](figures/mesh-white.png){width=200} | ![semi-inflated](figures/mesh-semi-inflated.png){width=200} |
-| pial | white | semi-inflated |
-| ![sphere](figures/mesh-sphere.png){width=200} | ![smoothwm](figures/mesh-smoothwm.png){width=200} | ![orig](figures/mesh-orig.png){width=200} |
-| sphere | smoothwm | orig |
+| ![pial](figures/mesh-pial.png){width=200} | ![white](figures/mesh-white.png){width=200} | ![midthickness](figures/mesh-midthickness.png){width=200} |
+| pial | white | midthickness |
+| ![semi-inflated](figures/mesh-semi-inflated.png){width=200} | ![sphere](figures/mesh-sphere.png){width=200} | ![smoothwm](figures/mesh-smoothwm.png){width=200} |
+| semi-inflated | sphere | smoothwm |
+| ![orig](figures/mesh-orig.png){width=200} | | |
+| orig | | |
 
 ### Cerebellar
 
@@ -102,10 +105,14 @@ This means vertex indices from cortical atlases work with any surface -- the sam
 
 ```{r}
 #| label: vertex-count
-vapply(available_cortical_surfaces(), function(s) {
-  mesh <- get_cortical_mesh("lh", s)
-  c(vertices = nrow(mesh$vertices), faces = nrow(mesh$faces))
-}, integer(2))
+vapply(
+  available_cortical_surfaces(),
+  function(s) {
+    mesh <- get_cortical_mesh("lh", s)
+    c(vertices = nrow(mesh$vertices), faces = nrow(mesh$faces))
+  },
+  integer(2)
+)
 ```
 
 The cerebellar flatmap shares vertex indices with the SUIT 3D pial mesh (indices 0--28,934), so cerebellar atlas vertex assignments apply to both the 3D and flatmap representations.

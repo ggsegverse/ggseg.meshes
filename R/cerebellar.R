@@ -26,7 +26,7 @@ get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
   mesh <- switch(
     surface,
     "suit_flat" = cerebellar_mesh_suit_flat,
-    stop("Unknown surface: ", surface)
+    cli::cli_abort("Unknown surface: {.val {surface}}")
   )
 
   attr(mesh, "face_index_base") <- 0L

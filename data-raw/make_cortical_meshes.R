@@ -1,7 +1,7 @@
 # Generate cortical brain meshes for ggseg.meshes
 #
 # Creates all cortical fsaverage5 surface meshes:
-#   - pial, white, semi-inflated (migrated from ggseg3d)
+#   - pial, white, semi-inflated, midthickness (migrated from ggseg3d)
 #   - sphere, smoothwm, orig (new)
 #
 # Requires freesurferformats and freesurfer packages.
@@ -87,6 +87,29 @@ for (hemi in hemispheres) {
   )
 }
 
+# Midthickness = 50/50 interpolation of pial and white
+for (hemi in hemispheres) {
+  cli::cli_alert_info("Computing {hemi}_midthickness...")
+
+  pial_verts <- all_meshes[[paste0(hemi, "_pial")]]$vertices
+  white_verts <- all_meshes[[paste0(hemi, "_white")]]$vertices
+
+  mid_verts <- data.frame(
+    x = 0.5 * pial_verts$x + 0.5 * white_verts$x,
+    y = 0.5 * pial_verts$y + 0.5 * white_verts$y,
+    z = 0.5 * pial_verts$z + 0.5 * white_verts$z
+  )
+
+  all_meshes[[paste0(hemi, "_midthickness")]] <- list(
+    vertices = mid_verts,
+    faces = all_meshes[[paste0(hemi, "_white")]]$faces
+  )
+
+  cli::cli_alert_success(
+    "{hemi}_midthickness: {nrow(mid_verts)}v (interpolated)"
+  )
+}
+
 make_pair <- function(surf) {
   list(
     lh = all_meshes[[paste0("lh_", surf)]],
@@ -100,11 +123,13 @@ brain_mesh_semi_inflated <- make_pair("semi-inflated")
 brain_mesh_sphere <- make_pair("sphere")
 brain_mesh_smoothwm <- make_pair("smoothwm")
 brain_mesh_orig <- make_pair("orig")
+brain_mesh_midthickness <- make_pair("midthickness")
 
 usethis::use_data(
   brain_mesh_pial,
   brain_mesh_white,
   brain_mesh_semi_inflated,
+  brain_mesh_midthickness,
   brain_mesh_sphere,
   brain_mesh_smoothwm,
   brain_mesh_orig,

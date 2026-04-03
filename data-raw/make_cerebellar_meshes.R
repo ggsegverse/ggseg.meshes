@@ -43,6 +43,7 @@ usethis::use_data(
   brain_mesh_pial,
   brain_mesh_white,
   brain_mesh_semi_inflated,
+  brain_mesh_midthickness,
   brain_mesh_sphere,
   brain_mesh_smoothwm,
   brain_mesh_orig,
