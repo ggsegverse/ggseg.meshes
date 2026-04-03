@@ -39,7 +39,7 @@ All cortical meshes are at fsaverage5 resolution (10,242 vertices, 20,480 faces 
 |---------|-------------|
 | `pial` | Grey matter / CSF boundary |
 | `white` | Grey / white matter boundary |
-| `semi-inflated` | 50/50 blend of white and inflated |
+| `semi-inflated` | 35/65 blend of white and inflated |
 | `sphere` | Spherical registration surface |
 | `smoothwm` | Smoothed white matter surface |
 | `orig` | Original surface before topology correction |

@@ -1,9 +1,12 @@
 Package: ggseg.meshes
 Title: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem
 Version: 0.0.1
-Authors@R:
+Authors@R: c(
     person("Athanasia Mo", "Mowinckel", , "a.m.mowinckel@psykologi.uio.no", role = c("aut", "cre"),
-           comment = c(ORCID = "0000-0002-5756-0223"))
+           comment = c(ORCID = "0000-0002-5756-0223")),
+    person("Center for Lifespan Changes in Brain and Cognition (LCBC), University of Oslo",
+           role = "cph")
+  )
 Description: Provides additional brain surface meshes for cortical and
     cerebellar visualisation in the 'ggsegverse' ecosystem. All meshes follow the same 
     vertices/faces data frame format used by

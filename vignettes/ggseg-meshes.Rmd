@@ -36,7 +36,7 @@ available_cortical_surfaces()
 |---------|-------------|----------|
 | **pial** | Grey matter / CSF boundary | Anatomically accurate rendering |
 | **white** | Grey / white matter boundary | White matter surface visualisation |
-| **semi-inflated** | 50/50 blend of white + inflated | Compromise between anatomical accuracy and visibility |
+| **semi-inflated** | 35/65 blend of white + inflated | Compromise between anatomical accuracy and visibility |
 | **sphere** | Spherical registration surface | Surface-based registration, QC |
 | **smoothwm** | Smoothed white matter | Smoother alternative to white surface |
 | **orig** | Pre-topology-correction surface | Debugging surface reconstruction |

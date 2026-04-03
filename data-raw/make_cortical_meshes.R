@@ -33,10 +33,12 @@ read_surface <- function(hemi, surf) {
 
   mesh <- freesurferformats::read.fs.surface(surf_file)
 
+  # Rotate 90 degrees CCW: (x,y,z) -> (y,-x,z)
+  # Lateral view with superior at top, A/P horizontal
   list(
     vertices = data.frame(
-      x = mesh$vertices[, 1],
-      y = mesh$vertices[, 2],
+      x = mesh$vertices[, 2],
+      y = -mesh$vertices[, 1],
       z = mesh$vertices[, 3]
     ),
     faces = data.frame(
@@ -62,7 +64,7 @@ for (hemi in hemispheres) {
   }
 }
 
-# Semi-inflated = 50/50 interpolation of white and inflated
+# Semi-inflated = 35/65 interpolation of white and inflated
 for (hemi in hemispheres) {
   cli::cli_alert_info("Computing {hemi}_semi-inflated...")
 
@@ -70,9 +72,9 @@ for (hemi in hemispheres) {
   infl_verts <- all_meshes[[paste0(hemi, "_inflated")]]$vertices
 
   semi_verts <- data.frame(
-    x = 0.5 * white_verts$x + 0.5 * infl_verts$x,
-    y = 0.5 * white_verts$y + 0.5 * infl_verts$y,
-    z = 0.5 * white_verts$z + 0.5 * infl_verts$z
+    x = 0.35 * white_verts$x + 0.65 * infl_verts$x,
+    y = 0.35 * white_verts$y + 0.65 * infl_verts$y,
+    z = 0.35 * white_verts$z + 0.65 * infl_verts$z
   )
 
   all_meshes[[paste0(hemi, "_semi-inflated")]] <- list(
