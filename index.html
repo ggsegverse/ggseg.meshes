@@ -16,6 +16,7 @@
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Additional Brain Surface Meshes for the ggsegverse Ecosystem">
 <meta name="description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
 <meta property="og:description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
+<meta property="og:image" content="https://ggsegverse.github.io/ggseg.meshes/logo.svg">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -61,8 +62,10 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
-<div class="page-header"><h1 id="ggsegmeshes">ggseg.meshes<a class="anchor" aria-label="anchor" href="#ggsegmeshes"></a>
-</h1></div>
+<div class="page-header">
+<img src="logo.svg" class="logo" alt=""><h1 id="ggsegmeshes-">ggseg.meshes <a class="anchor" aria-label="anchor" href="#ggsegmeshes-"></a>
+</h1>
+</div>
 <!-- badges: start -->
 
 <p>Additional brain surface meshes for the <a href="https://ggsegverse.github.io/ggseg/" class="external-link">ggsegverse</a> ecosystem. Ships cortical and cerebellar surfaces beyond the inflated cortical and SUIT 3D pial meshes bundled with the core packages.</p>
@@ -88,18 +91,22 @@
 <td>Grey / white matter boundary</td>
 </tr>
 <tr class="odd">
+<td><code>midthickness</code></td>
+<td>Midpoint of pial and white surfaces</td>
+</tr>
+<tr class="even">
 <td><code>semi-inflated</code></td>
 <td>35/65 blend of white and inflated</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>sphere</code></td>
 <td>Spherical registration surface</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><code>smoothwm</code></td>
 <td>Smoothed white matter surface</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><code>orig</code></td>
 <td>Original surface before topology correction</td>
 </tr>
@@ -158,8 +165,8 @@
 <span><span class="co">#&gt;  - attr(*, "face_index_base")= int 1</span></span></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "pial"          "white"         "semi-inflated" "sphere"       </span></span>
-<span><span class="co">#&gt; [5] "smoothwm"      "orig"</span></span>
+<span><span class="co">#&gt; [1] "pial"          "white"         "midthickness"  "semi-inflated"</span></span>
+<span><span class="co">#&gt; [5] "sphere"        "smoothwm"      "orig"</span></span>
 <span><span class="fu"><a href="reference/available_cerebellar_surfaces.html">available_cerebellar_surfaces</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "suit_flat"</span></span></code></pre></div>
 <div class="section level3">

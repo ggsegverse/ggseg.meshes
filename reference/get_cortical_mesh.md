@@ -18,8 +18,8 @@ get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 
 - surface:
 
-  Surface type: `"pial"`, `"white"`, `"semi-inflated"`, `"sphere"`,
-  `"smoothwm"`, or `"orig"`
+  Surface type: `"pial"`, `"white"`, `"midthickness"`,
+  `"semi-inflated"`, `"sphere"`, `"smoothwm"`, or `"orig"`
 
 ## Value
 

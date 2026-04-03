@@ -63,8 +63,7 @@
 
 <div class="row">
   <main id="main" class="col-md-9"><div class="page-header">
-
-      <h1>Introduction to ggseg.meshes</h1>
+      <img src="../logo.svg" class="logo" alt=""><h1>Introduction to ggseg.meshes</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/ggsegverse/ggseg.meshes/blob/main/vignettes/ggseg-meshes.Rmd" class="external-link"><code>vignettes/ggseg-meshes.Rmd</code></a></small>
@@ -88,8 +87,8 @@ cerebellar visualisation.</p>
 20,480 triangular faces per hemisphere.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "pial"          "white"         "semi-inflated" "sphere"       </span></span>
-<span><span class="co">#&gt; [5] "smoothwm"      "orig"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "pial"          "white"         "midthickness"  "semi-inflated"</span></span>
+<span><span class="co">#&gt; [5] "sphere"        "smoothwm"      "orig"</span></span></code></pre></div>
 <table class="table">
 <colgroup>
 <col width="28%">
@@ -113,21 +112,26 @@ cerebellar visualisation.</p>
 <td>White matter surface visualisation</td>
 </tr>
 <tr class="odd">
+<td><strong>midthickness</strong></td>
+<td>Midpoint of pial + white</td>
+<td>HCP-style analyses, functional data sampling</td>
+</tr>
+<tr class="even">
 <td><strong>semi-inflated</strong></td>
 <td>35/65 blend of white + inflated</td>
 <td>Compromise between anatomical accuracy and visibility</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>sphere</strong></td>
 <td>Spherical registration surface</td>
 <td>Surface-based registration, QC</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>smoothwm</strong></td>
 <td>Smoothed white matter</td>
 <td>Smoother alternative to white surface</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>orig</strong></td>
 <td>Pre-topology-correction surface</td>
 <td>Debugging surface reconstruction</td>
@@ -144,22 +148,32 @@ cerebellar visualisation.</p>
 <tr class="odd">
 <td align="center"><img src="figures/mesh-pial.png" width="200" alt="pial"></td>
 <td align="center"><img src="figures/mesh-white.png" width="200" alt="white"></td>
-<td align="center"><img src="figures/mesh-semi-inflated.png" width="200" alt="semi-inflated"></td>
+<td align="center"><img src="figures/mesh-midthickness.png" width="200" alt="midthickness"></td>
 </tr>
 <tr class="even">
 <td align="center">pial</td>
 <td align="center">white</td>
-<td align="center">semi-inflated</td>
+<td align="center">midthickness</td>
 </tr>
 <tr class="odd">
+<td align="center"><img src="figures/mesh-semi-inflated.png" width="200" alt="semi-inflated"></td>
 <td align="center"><img src="figures/mesh-sphere.png" width="200" alt="sphere"></td>
 <td align="center"><img src="figures/mesh-smoothwm.png" width="200" alt="smoothwm"></td>
-<td align="center"><img src="figures/mesh-orig.png" width="200" alt="orig"></td>
 </tr>
 <tr class="even">
+<td align="center">semi-inflated</td>
 <td align="center">sphere</td>
 <td align="center">smoothwm</td>
+</tr>
+<tr class="odd">
+<td align="center"><img src="figures/mesh-orig.png" width="200" alt="orig"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
 <td align="center">orig</td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
@@ -235,13 +249,17 @@ indices from cortical atlases work with any surface – the same vertex
 index refers to the same anatomical location across pial, white,
 inflated, sphere, etc.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span><span class="fu"><a href="../reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span>, <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cortical_mesh.html">get_cortical_mesh</a></span><span class="op">(</span><span class="st">"lh"</span>, <span class="va">s</span><span class="op">)</span></span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>vertices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">vertices</span><span class="op">)</span>, faces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">faces</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">}</span>, <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt;           pial white semi-inflated sphere smoothwm  orig</span></span>
-<span><span class="co">#&gt; vertices 10242 10242         10242  10242    10242 10242</span></span>
-<span><span class="co">#&gt; faces    20480 20480         20480  20480    20480 20480</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="../reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  <span class="kw">function</span><span class="op">(</span><span class="va">s</span><span class="op">)</span> <span class="op">{</span></span>
+<span>    <span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cortical_mesh.html">get_cortical_mesh</a></span><span class="op">(</span><span class="st">"lh"</span>, <span class="va">s</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>vertices <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">vertices</span><span class="op">)</span>, faces <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html" class="external-link">nrow</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">faces</span><span class="op">)</span><span class="op">)</span></span>
+<span>  <span class="op">}</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/integer.html" class="external-link">integer</a></span><span class="op">(</span><span class="fl">2</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;           pial white midthickness semi-inflated sphere smoothwm  orig</span></span>
+<span><span class="co">#&gt; vertices 10242 10242        10242         10242  10242    10242 10242</span></span>
+<span><span class="co">#&gt; faces    20480 20480        20480         20480  20480    20480 20480</span></span></code></pre></div>
 <p>The cerebellar flatmap shares vertex indices with the SUIT 3D pial
 mesh (indices 0–28,934), so cerebellar atlas vertex assignments apply to
 both the 3D and flatmap representations.</p>

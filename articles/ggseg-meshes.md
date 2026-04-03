@@ -15,25 +15,28 @@ All cortical meshes are fsaverage5 resolution: 10,242 vertices and
 
 ``` r
 available_cortical_surfaces()
-#> [1] "pial"          "white"         "semi-inflated" "sphere"       
-#> [5] "smoothwm"      "orig"
+#> [1] "pial"          "white"         "midthickness"  "semi-inflated"
+#> [5] "sphere"        "smoothwm"      "orig"
 ```
 
 | Surface           | Description                     | Use case                                              |
 |-------------------|---------------------------------|-------------------------------------------------------|
 | **pial**          | Grey matter / CSF boundary      | Anatomically accurate rendering                       |
 | **white**         | Grey / white matter boundary    | White matter surface visualisation                    |
+| **midthickness**  | Midpoint of pial + white        | HCP-style analyses, functional data sampling          |
 | **semi-inflated** | 35/65 blend of white + inflated | Compromise between anatomical accuracy and visibility |
 | **sphere**        | Spherical registration surface  | Surface-based registration, QC                        |
 | **smoothwm**      | Smoothed white matter           | Smoother alternative to white surface                 |
 | **orig**          | Pre-topology-correction surface | Debugging surface reconstruction                      |
 
-|                                    |                                        |                                                  |
-|:----------------------------------:|:--------------------------------------:|:------------------------------------------------:|
-|   ![pial](figures/mesh-pial.png)   |    ![white](figures/mesh-white.png)    | ![semi-inflated](figures/mesh-semi-inflated.png) |
-|                pial                |                 white                  |                  semi-inflated                   |
-| ![sphere](figures/mesh-sphere.png) | ![smoothwm](figures/mesh-smoothwm.png) |          ![orig](figures/mesh-orig.png)          |
-|               sphere               |                smoothwm                |                       orig                       |
+|                                                  |                                    |                                                |
+|:------------------------------------------------:|:----------------------------------:|:----------------------------------------------:|
+|          ![pial](figures/mesh-pial.png)          |  ![white](figures/mesh-white.png)  | ![midthickness](figures/mesh-midthickness.png) |
+|                       pial                       |               white                |                  midthickness                  |
+| ![semi-inflated](figures/mesh-semi-inflated.png) | ![sphere](figures/mesh-sphere.png) |     ![smoothwm](figures/mesh-smoothwm.png)     |
+|                  semi-inflated                   |               sphere               |                    smoothwm                    |
+|          ![orig](figures/mesh-orig.png)          |                                    |                                                |
+|                       orig                       |                                    |                                                |
 
 ### Cerebellar
 
@@ -109,13 +112,17 @@ cortical atlases work with any surface – the same vertex index refers to
 the same anatomical location across pial, white, inflated, sphere, etc.
 
 ``` r
-vapply(available_cortical_surfaces(), function(s) {
-  mesh <- get_cortical_mesh("lh", s)
-  c(vertices = nrow(mesh$vertices), faces = nrow(mesh$faces))
-}, integer(2))
-#>           pial white semi-inflated sphere smoothwm  orig
-#> vertices 10242 10242         10242  10242    10242 10242
-#> faces    20480 20480         20480  20480    20480 20480
+vapply(
+  available_cortical_surfaces(),
+  function(s) {
+    mesh <- get_cortical_mesh("lh", s)
+    c(vertices = nrow(mesh$vertices), faces = nrow(mesh$faces))
+  },
+  integer(2)
+)
+#>           pial white midthickness semi-inflated sphere smoothwm  orig
+#> vertices 10242 10242        10242         10242  10242    10242 10242
+#> faces    20480 20480        20480         20480  20480    20480 20480
 ```
 
 The cerebellar flatmap shares vertex indices with the SUIT 3D pial mesh
