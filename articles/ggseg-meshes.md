@@ -23,7 +23,7 @@ available_cortical_surfaces()
 |-------------------|---------------------------------|-------------------------------------------------------|
 | **pial**          | Grey matter / CSF boundary      | Anatomically accurate rendering                       |
 | **white**         | Grey / white matter boundary    | White matter surface visualisation                    |
-| **semi-inflated** | 50/50 blend of white + inflated | Compromise between anatomical accuracy and visibility |
+| **semi-inflated** | 35/65 blend of white + inflated | Compromise between anatomical accuracy and visibility |
 | **sphere**        | Spherical registration surface  | Surface-based registration, QC                        |
 | **smoothwm**      | Smoothed white matter           | Smoother alternative to white surface                 |
 | **orig**          | Pre-topology-correction surface | Debugging surface reconstruction                      |
@@ -60,13 +60,13 @@ Each mesh is a list with `vertices` (data.frame: x, y, z) and `faces`
 ``` r
 mesh <- get_cortical_mesh("lh", "pial")
 head(mesh$vertices)
-#>            x            y         z
-#> 1 -38.735958 -19.34336472 67.220139
-#> 2 -16.662487 -69.06122589 61.281273
-#> 3  -9.717618  -9.23326397 46.580341
-#> 4 -24.019428  43.11487198 23.926214
-#> 5 -59.861500   0.04929276  8.974564
-#> 6 -50.645546 -49.40507889 47.813751
+#>              x         y         z
+#> 1 -19.34336472 38.735958 67.220139
+#> 2 -69.06122589 16.662487 61.281273
+#> 3  -9.23326397  9.717618 46.580341
+#> 4  43.11487198 24.019428 23.926214
+#> 5   0.04929276 59.861500  8.974564
+#> 6 -49.40507889 50.645546 47.813751
 head(mesh$faces)
 #>   i    j    k
 #> 1 1 2565 2563

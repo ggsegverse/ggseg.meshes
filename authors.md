@@ -5,6 +5,9 @@
 - **Athanasia Mo Mowinckel**. Author, maintainer.
   [](https://orcid.org/0000-0002-5756-0223)
 
+- **Center for Lifespan Changes in Brain and Cognition (LCBC),
+  University of Oslo**. Copyright holder.
+
 ## Citation
 
 Source:
