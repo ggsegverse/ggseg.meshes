@@ -4,10 +4,7 @@
 \alias{get_cortical_mesh}
 \title{Get cortical brain surface mesh}
 \usage{
-get_cortical_mesh(
-  hemisphere = c("lh", "rh"),
-  surface = c("pial", "white", "semi-inflated", "sphere", "smoothwm", "orig")
-)
+get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 }
 \arguments{
 \item{hemisphere}{\code{"lh"} or \code{"rh"}}
@@ -18,6 +15,7 @@ get_cortical_mesh(
 \value{
 A list with \code{vertices} (data.frame with x, y, z) and \code{faces}
 (data.frame with i, j, k, 1-based indices).
+Has attribute \code{face_index_base = 1L}.
 }
 \description{
 Retrieves a cortical brain surface mesh for the specified hemisphere and

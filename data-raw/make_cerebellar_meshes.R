@@ -4,6 +4,9 @@
 # as a mesh object alongside the cortical meshes.
 # Requires gifti package.
 #
+# IMPORTANT: Run make_cortical_meshes.R first — this script loads
+# R/sysdata.rda to append cerebellar data alongside cortical meshes.
+#
 # Run with: source("data-raw/make_cerebellar_meshes.R")
 
 if (!requireNamespace("gifti", quietly = TRUE)) {
@@ -14,7 +17,7 @@ if (!requireNamespace("ggseg.extra", quietly = TRUE)) {
   stop("ggseg.extra is required for SUIT surface paths.")
 }
 
-flatmap_path <- ggseg.extra:::suit_flatmap_path()
+flatmap_path <- ggseg.extra::suit_flatmap_path()
 cli::cli_alert_info("Reading SUIT flatmap from {flatmap_path}")
 
 gii <- gifti::readgii(flatmap_path)

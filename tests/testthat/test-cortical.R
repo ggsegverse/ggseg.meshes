@@ -20,6 +20,15 @@ describe("get_cortical_mesh()", {
   it("uses 1-based face indices", {
     mesh <- get_cortical_mesh("lh", "orig")
     expect_true(min(mesh$faces$i) >= 1)
+    expect_true(min(mesh$faces$j) >= 1)
+    expect_true(min(mesh$faces$k) >= 1)
+    expect_equal(attr(mesh, "face_index_base"), 1L)
+  })
+
+  it("returns numeric data.frames", {
+    mesh <- get_cortical_mesh("lh", "pial")
+    expect_true(all(vapply(mesh$vertices, is.numeric, logical(1))))
+    expect_true(all(vapply(mesh$faces, is.numeric, logical(1))))
   })
 
   it("errors on invalid hemisphere", {

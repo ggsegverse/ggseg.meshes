@@ -4,12 +4,16 @@
 \alias{get_cerebellar_flatmap}
 \title{Get SUIT cerebellar flatmap mesh}
 \usage{
-get_cerebellar_flatmap()
+get_cerebellar_flatmap(surface = .cerebellar_surfaces)
+}
+\arguments{
+\item{surface}{Surface type. Currently only \code{"suit_flat"}.}
 }
 \value{
 A list with \code{vertices} (data.frame with x, y, z) and \code{faces}
 (data.frame with i, j, k, 0-based indices matching \code{ggseg.formats}
 convention for cerebellar meshes).
+Has attribute \code{face_index_base = 0L}.
 }
 \description{
 Retrieves the SUIT cerebellar flatmap surface mesh. This is a 2D flattened

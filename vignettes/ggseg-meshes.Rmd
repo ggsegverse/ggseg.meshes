@@ -41,6 +41,13 @@ available_cortical_surfaces()
 | **smoothwm** | Smoothed white matter | Smoother alternative to white surface |
 | **orig** | Pre-topology-correction surface | Debugging surface reconstruction |
 
+| | | |
+|:---:|:---:|:---:|
+| ![pial](figures/mesh-pial.png){width=200} | ![white](figures/mesh-white.png){width=200} | ![semi-inflated](figures/mesh-semi-inflated.png){width=200} |
+| pial | white | semi-inflated |
+| ![sphere](figures/mesh-sphere.png){width=200} | ![smoothwm](figures/mesh-smoothwm.png){width=200} | ![orig](figures/mesh-orig.png){width=200} |
+| sphere | smoothwm | orig |
+
 ### Cerebellar
 
 ```{r}
@@ -50,6 +57,8 @@ available_cerebellar_surfaces()
 
 The SUIT flatmap is a 2D flattened projection of the cerebellar cortex with 28,935 vertices.
 Vertex indices from cerebellar atlases map directly to this surface since it shares the same vertex space as the SUIT 3D pial mesh in ggseg.formats (minus the 1,078 peduncular cap vertices).
+
+![SUIT cerebellar flatmap](figures/mesh-suit_flat.png){width=300}
 
 ## Accessing meshes
 

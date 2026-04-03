@@ -16,6 +16,20 @@ describe("get_cerebellar_flatmap()", {
     mesh <- get_cerebellar_flatmap()
     expect_true(max(abs(mesh$vertices$z)) < 1)
   })
+
+  it("uses 0-based face indices", {
+    mesh <- get_cerebellar_flatmap()
+    expect_true(min(mesh$faces$i) >= 0)
+    expect_true(min(mesh$faces$j) >= 0)
+    expect_true(min(mesh$faces$k) >= 0)
+    expect_equal(attr(mesh, "face_index_base"), 0L)
+  })
+
+  it("returns numeric data.frames", {
+    mesh <- get_cerebellar_flatmap()
+    expect_true(all(vapply(mesh$vertices, is.numeric, logical(1))))
+    expect_true(all(vapply(mesh$faces, is.numeric, logical(1))))
+  })
 })
 
 describe("available_cerebellar_surfaces()", {

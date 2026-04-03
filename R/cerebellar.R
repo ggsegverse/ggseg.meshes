@@ -1,3 +1,5 @@
+.cerebellar_surfaces <- c("suit_flat")
+
 #' Get SUIT cerebellar flatmap mesh
 #'
 #' Retrieves the SUIT cerebellar flatmap surface mesh. This is a 2D flattened
@@ -8,15 +10,27 @@
 #' matches the SUIT 3D pial surface in `ggseg.formats`, so vertex indices
 #' from cerebellar atlases map directly to this mesh.
 #'
+#' @param surface Surface type. Currently only `"suit_flat"`.
+#'
 #' @return A list with `vertices` (data.frame with x, y, z) and `faces`
 #'   (data.frame with i, j, k, 0-based indices matching `ggseg.formats`
 #'   convention for cerebellar meshes).
+#'   Has attribute `face_index_base = 0L`.
 #' @export
 #' @examples
 #' mesh <- get_cerebellar_flatmap()
 #' nrow(mesh$vertices)
-get_cerebellar_flatmap <- function() {
-  cerebellar_mesh_suit_flat
+get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
+  surface <- match.arg(surface)
+
+  mesh <- switch(
+    surface,
+    "suit_flat" = cerebellar_mesh_suit_flat,
+    stop("Unknown surface: ", surface)
+  )
+
+  attr(mesh, "face_index_base") <- 0L
+  mesh
 }
 
 
@@ -27,5 +41,5 @@ get_cerebellar_flatmap <- function() {
 #' @examples
 #' available_cerebellar_surfaces()
 available_cerebellar_surfaces <- function() {
-  c("suit_flat")
+  .cerebellar_surfaces
 }

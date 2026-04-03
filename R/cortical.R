@@ -1,3 +1,8 @@
+.cortical_surfaces <- c(
+  "pial", "white", "semi-inflated",
+  "sphere", "smoothwm", "orig"
+)
+
 #' Get cortical brain surface mesh
 #'
 #' Retrieves a cortical brain surface mesh for the specified hemisphere and
@@ -10,14 +15,14 @@
 #'
 #' @return A list with `vertices` (data.frame with x, y, z) and `faces`
 #'   (data.frame with i, j, k, 1-based indices).
+#'   Has attribute `face_index_base = 1L`.
 #' @export
 #' @examples
 #' mesh <- get_cortical_mesh("lh", "pial")
 #' nrow(mesh$vertices)
 get_cortical_mesh <- function(
   hemisphere = c("lh", "rh"),
-  surface = c("pial", "white", "semi-inflated",
-              "sphere", "smoothwm", "orig")
+  surface = .cortical_surfaces
 ) {
   hemisphere <- match.arg(hemisphere)
   surface <- match.arg(surface)
@@ -29,10 +34,13 @@ get_cortical_mesh <- function(
     "semi-inflated" = brain_mesh_semi_inflated,
     "sphere" = brain_mesh_sphere,
     "smoothwm" = brain_mesh_smoothwm,
-    "orig" = brain_mesh_orig
+    "orig" = brain_mesh_orig,
+    stop("Unknown surface: ", surface)
   )
 
-  mesh_data[[hemisphere]]
+  mesh <- mesh_data[[hemisphere]]
+  attr(mesh, "face_index_base") <- 1L
+  mesh
 }
 
 
@@ -43,5 +51,5 @@ get_cortical_mesh <- function(
 #' @examples
 #' available_cortical_surfaces()
 available_cortical_surfaces <- function() {
-  c("pial", "white", "semi-inflated", "sphere", "smoothwm", "orig")
+  .cortical_surfaces
 }
