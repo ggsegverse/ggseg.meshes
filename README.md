@@ -1,5 +1,5 @@
 
-# ggseg.meshes
+# ggseg.meshes <img src="man/figures/logo.png" align="right" height="138" />
 
 <!-- badges: start -->
 
