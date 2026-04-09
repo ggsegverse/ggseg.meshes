@@ -6,7 +6,9 @@
 \alias{ggseg.meshes-package}
 \title{ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem}
 \description{
-Provides additional brain surface meshes for cortical and cerebellar visualisation in the 'ggsegverse' ecosystem. All meshes follow the same vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
+Provides additional brain surface meshes for cortical and cerebellar visualisation in the 'ggsegverse' ecosystem. Cortical surfaces include pial, white, midthickness, semi-inflated, sphere, smoothwm, and orig at fsaverage5 resolution. Cerebellar surfaces include the Spatially Unbiased Infratentorial Template (SUIT) flatmap. All meshes follow the same vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
 }
 \seealso{
 Useful links:

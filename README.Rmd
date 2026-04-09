@@ -53,7 +53,15 @@ All cortical meshes are at fsaverage5 resolution (10,242 vertices, 20,480 faces 
 
 ## Installation
 
-Install from the [ggsegverse r-universe](https://ggsegverse.r-universe.dev):
+Install from CRAN:
+
+```{r}
+#| label: install-cran
+#| eval: false
+install.packages("ggseg.meshes")
+```
+
+Or from the [ggsegverse r-universe](https://ggsegverse.r-universe.dev):
 
 ```{r}
 #| label: install-runiverse

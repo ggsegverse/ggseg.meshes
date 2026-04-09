@@ -19,3 +19,4 @@
 ^README\.html$
 ^codemeta\.json$
 ^CRAN-SUBMISSION$
+^man/figures/logo\.svg$

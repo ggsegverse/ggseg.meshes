@@ -13,41 +13,29 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
     faces <- faces + 1L
   }
 
-  x <- verts$x
-  y <- verts$z
+  is_flat <- diff(range(verts$z)) < 1e-6
 
-  depth <- (verts$y[faces$i] + verts$y[faces$j] + verts$y[faces$k]) / 3
-  face_order <- order(depth)
+  if (is_flat) {
+    x <- verts$x
+    y <- verts$y
+  } else {
+    x <- verts$x
+    y <- verts$z
+  }
 
-  shades <- vapply(
-    seq_len(nrow(faces)),
-    function(idx) {
-      v1 <- as.numeric(verts[faces$i[idx], ])
-      v2 <- as.numeric(verts[faces$j[idx], ])
-      v3 <- as.numeric(verts[faces$k[idx], ])
-      e1 <- v2 - v1
-      e2 <- v3 - v1
-      normal <- c(
-        e1[2] * e2[3] - e1[3] * e2[2],
-        e1[3] * e2[1] - e1[1] * e2[3],
-        e1[1] * e2[2] - e1[2] * e2[1]
-      )
-      n_len <- sqrt(sum(normal^2))
-      if (n_len < 1e-10) {
-        return(0.5)
-      }
-      normal <- normal / n_len
-      light <- c(-0.3, -1, 0.7)
-      light <- light / sqrt(sum(light^2))
-      0.35 + 0.65 * max(0, sum(normal * light))
-    },
-    numeric(1)
+  edges <- rbind(
+    data.frame(from = faces$i, to = faces$j),
+    data.frame(from = faces$i, to = faces$k),
+    data.frame(from = faces$j, to = faces$k)
   )
+  edges$key <- paste(pmin(edges$from, edges$to), pmax(edges$from, edges$to))
+  edges <- edges[!duplicated(edges$key), ]
 
-  cols <- grDevices::grey(shades)
+  bg <- "#13293a"
+  fg <- "#a8c5cb"
 
-  grDevices::png(filename, width = width, height = height, bg = "white")
-  graphics::par(mar = c(0, 0, 0, 0))
+  grDevices::png(filename, width = width, height = height, bg = bg)
+  graphics::par(mar = c(1, 1, 1, 1))
   graphics::plot(
     NULL,
     xlim = range(x),
@@ -58,11 +46,12 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
     ylab = ""
   )
 
-  for (fi in face_order) {
-    xi <- x[c(faces$i[fi], faces$j[fi], faces$k[fi])]
-    yi <- y[c(faces$i[fi], faces$j[fi], faces$k[fi])]
-    graphics::polygon(xi, yi, col = cols[fi], border = NA)
-  }
+  graphics::segments(
+    x[edges$from], y[edges$from],
+    x[edges$to], y[edges$to],
+    col = grDevices::adjustcolor(fg, alpha.f = 0.4),
+    lwd = 0.15
+  )
 
   grDevices::dev.off()
 }
