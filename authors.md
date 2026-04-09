@@ -11,7 +11,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/ggsegverse/ggseg.meshes/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/ggsegverse/ggseg.meshes/blob/v0.0.1/DESCRIPTION)
 
 Mowinckel A (2026). *ggseg.meshes: Additional Brain Surface Meshes for
 the 'ggsegverse' Ecosystem*. R package version 0.0.1,
