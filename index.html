@@ -14,9 +14,9 @@
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Additional Brain Surface Meshes for the ggsegverse Ecosystem">
-<meta name="description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
-<meta property="og:description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
-<meta property="og:image" content="https://ggsegverse.github.io/ggseg.meshes/logo.svg">
+<meta name="description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. Cortical surfaces include pial, white, midthickness, semi-inflated, sphere, smoothwm, and orig at fsaverage5 resolution. Cerebellar surfaces include the Spatially Unbiased Infratentorial Template (SUIT) flatmap. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
+<meta property="og:description" content="Provides additional brain surface meshes for cortical and cerebellar visualisation in the ggsegverse ecosystem. Cortical surfaces include pial, white, midthickness, semi-inflated, sphere, smoothwm, and orig at fsaverage5 resolution. Cerebellar surfaces include the Spatially Unbiased Infratentorial Template (SUIT) flatmap. All meshes follow the same vertices/faces data frame format used by ggseg.formats and ggseg3d.">
+<meta property="og:image" content="https://ggsegverse.github.io/ggseg.meshes/logo.png">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -63,7 +63,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.svg" class="logo" alt=""><h1 id="ggsegmeshes-">ggseg.meshes <a class="anchor" aria-label="anchor" href="#ggsegmeshes-"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="ggsegmeshes-">ggseg.meshes <a class="anchor" aria-label="anchor" href="#ggsegmeshes-"></a>
 </h1>
 </div>
 <!-- badges: start -->
@@ -131,8 +131,11 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>Install from the <a href="https://ggsegverse.r-universe.dev" class="external-link">ggsegverse r-universe</a>:</p>
+<p>Install from CRAN:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggseg.meshes"</span><span class="op">)</span></span></code></pre></div>
+<p>Or from the <a href="https://ggsegverse.r-universe.dev" class="external-link">ggsegverse r-universe</a>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span></span>
 <span>  repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
 <span>    ggsegverse <span class="op">=</span> <span class="st">"https://ggsegverse.r-universe.dev"</span>,</span>
@@ -141,14 +144,14 @@
 <span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggseg.meshes"</span><span class="op">)</span></span></code></pre></div>
 <p>Or from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ggsegverse/ggseg.meshes"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggsegverse/ggseg.meshes" class="external-link">ggseg.meshes</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/get_cortical_mesh.html">get_cortical_mesh</a></span><span class="op">(</span><span class="st">"lh"</span>, <span class="st">"pial"</span><span class="op">)</span></span>
@@ -163,7 +166,7 @@
 <span><span class="co">#&gt;   ..$ j: int [1:20480] 2565 2563 2566 2568 2570 2575 2573 2576 2582 2580 ...</span></span>
 <span><span class="co">#&gt;   ..$ k: int [1:20480] 2563 2566 2568 2570 2565 2573 2576 2578 2580 2583 ...</span></span>
 <span><span class="co">#&gt;  - attr(*, "face_index_base")= int 1</span></span></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "pial"          "white"         "midthickness"  "semi-inflated"</span></span>
 <span><span class="co">#&gt; [5] "sphere"        "smoothwm"      "orig"</span></span>
@@ -173,7 +176,7 @@
 <h3 id="with-ggseg3d">With ggseg3d<a class="anchor" aria-label="anchor" href="#with-ggseg3d"></a>
 </h3>
 <p>ggseg.meshes integrates with <a href="https://ggsegverse.github.io/ggseg3d/" class="external-link">ggseg3d</a> through <code>resolve_brain_mesh()</code>. When installed, all surfaces become available for 3D rendering:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/ggsegverse/ggseg3d" class="external-link">ggseg3d</a></span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu">ggseg3d</span><span class="op">(</span>atlas <span class="op">=</span> <span class="fu">dk</span><span class="op">(</span><span class="op">)</span>, surface <span class="op">=</span> <span class="st">"pial"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
@@ -197,6 +200,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=ggseg.meshes" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/ggsegverse/ggseg.meshes/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/ggsegverse/ggseg.meshes/issues" class="external-link">Report a bug</a></li>
 </ul>

@@ -1,8 +1,12 @@
 # ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem
 
 Provides additional brain surface meshes for cortical and cerebellar
-visualisation in the 'ggsegverse' ecosystem. All meshes follow the same
-vertices/faces data frame format used by 'ggseg.formats' and 'ggseg3d'.
+visualisation in the 'ggsegverse' ecosystem. Cortical surfaces include
+pial, white, midthickness, semi-inflated, sphere, smoothwm, and orig at
+fsaverage5 resolution. Cerebellar surfaces include the Spatially
+Unbiased Infratentorial Template (SUIT) flatmap. All meshes follow the
+same vertices/faces data frame format used by 'ggseg.formats' and
+'ggseg3d'.
 
 ## See also
 

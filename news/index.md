@@ -2,10 +2,12 @@
 
 ## ggseg.meshes 0.0.1
 
+CRAN release: 2026-04-09
+
 ### New features
 
-- Cortical fsaverage5 surfaces: pial, white, semi-inflated, sphere,
-  smoothwm, orig
+- Cortical fsaverage5 surfaces: pial, white, midthickness,
+  semi-inflated, sphere, smoothwm, orig
 - SUIT cerebellar flatmap surface
 - [`get_cortical_mesh()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cortical_mesh.md)
   for accessing cortical surfaces by hemisphere and type
