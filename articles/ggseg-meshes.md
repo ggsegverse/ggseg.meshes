@@ -14,33 +14,35 @@ All cortical meshes are fsaverage5 resolution: 10,242 vertices and
 20,480 triangular faces per hemisphere.
 
 ``` r
+
 available_cortical_surfaces()
 #> [1] "pial"          "white"         "midthickness"  "semi-inflated"
 #> [5] "sphere"        "smoothwm"      "orig"
 ```
 
-| Surface           | Description                     | Use case                                              |
-|-------------------|---------------------------------|-------------------------------------------------------|
-| **pial**          | Grey matter / CSF boundary      | Anatomically accurate rendering                       |
-| **white**         | Grey / white matter boundary    | White matter surface visualisation                    |
-| **midthickness**  | Midpoint of pial + white        | HCP-style analyses, functional data sampling          |
+| Surface | Description | Use case |
+|----|----|----|
+| **pial** | Grey matter / CSF boundary | Anatomically accurate rendering |
+| **white** | Grey / white matter boundary | White matter surface visualisation |
+| **midthickness** | Midpoint of pial + white | HCP-style analyses, functional data sampling |
 | **semi-inflated** | 35/65 blend of white + inflated | Compromise between anatomical accuracy and visibility |
-| **sphere**        | Spherical registration surface  | Surface-based registration, QC                        |
-| **smoothwm**      | Smoothed white matter           | Smoother alternative to white surface                 |
-| **orig**          | Pre-topology-correction surface | Debugging surface reconstruction                      |
+| **sphere** | Spherical registration surface | Surface-based registration, QC |
+| **smoothwm** | Smoothed white matter | Smoother alternative to white surface |
+| **orig** | Pre-topology-correction surface | Debugging surface reconstruction |
 
-|                                                  |                                    |                                                |
-|:------------------------------------------------:|:----------------------------------:|:----------------------------------------------:|
-|          ![pial](figures/mesh-pial.png)          |  ![white](figures/mesh-white.png)  | ![midthickness](figures/mesh-midthickness.png) |
-|                       pial                       |               white                |                  midthickness                  |
-| ![semi-inflated](figures/mesh-semi-inflated.png) | ![sphere](figures/mesh-sphere.png) |     ![smoothwm](figures/mesh-smoothwm.png)     |
-|                  semi-inflated                   |               sphere               |                    smoothwm                    |
-|          ![orig](figures/mesh-orig.png)          |                                    |                                                |
-|                       orig                       |                                    |                                                |
+|  |  |  |
+|:--:|:--:|:--:|
+| ![pial](figures/mesh-pial.png) | ![white](figures/mesh-white.png) | ![midthickness](figures/mesh-midthickness.png) |
+| pial | white | midthickness |
+| ![semi-inflated](figures/mesh-semi-inflated.png) | ![sphere](figures/mesh-sphere.png) | ![smoothwm](figures/mesh-smoothwm.png) |
+| semi-inflated | sphere | smoothwm |
+| ![orig](figures/mesh-orig.png) |  |  |
+| orig |  |  |
 
 ### Cerebellar
 
 ``` r
+
 available_cerebellar_surfaces()
 #> [1] "suit_flat"
 ```
@@ -61,6 +63,7 @@ Each mesh is a list with `vertices` (data.frame: x, y, z) and `faces`
 (data.frame: i, j, k).
 
 ``` r
+
 mesh <- get_cortical_mesh("lh", "pial")
 head(mesh$vertices)
 #>              x         y         z
@@ -81,6 +84,7 @@ head(mesh$faces)
 ```
 
 ``` r
+
 flat <- get_cerebellar_flatmap()
 nrow(flat$vertices)
 #> [1] 28935
@@ -95,6 +99,7 @@ resolve all surfaces provided by this package. This means you can render
 atlases on any surface:
 
 ``` r
+
 library(ggseg3d)
 
 ggseg3d(atlas = dk(), surface = "pial") |>
@@ -112,6 +117,7 @@ cortical atlases work with any surface – the same vertex index refers to
 the same anatomical location across pial, white, inflated, sphere, etc.
 
 ``` r
+
 vapply(
   available_cortical_surfaces(),
   function(s) {

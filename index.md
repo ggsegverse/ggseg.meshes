@@ -33,12 +33,14 @@ All cortical meshes are at fsaverage5 resolution (10,242 vertices,
 Install from CRAN:
 
 ``` r
+
 install.packages("ggseg.meshes")
 ```
 
 Or from the [ggsegverse r-universe](https://ggsegverse.r-universe.dev):
 
 ``` r
+
 options(
   repos = c(
     ggsegverse = "https://ggsegverse.r-universe.dev",
@@ -51,6 +53,7 @@ install.packages("ggseg.meshes")
 Or from GitHub:
 
 ``` r
+
 # install.packages("remotes")
 remotes::install_github("ggsegverse/ggseg.meshes")
 ```
@@ -58,6 +61,7 @@ remotes::install_github("ggsegverse/ggseg.meshes")
 ## Usage
 
 ``` r
+
 library(ggseg.meshes)
 
 mesh <- get_cortical_mesh("lh", "pial")
@@ -75,6 +79,7 @@ str(mesh)
 ```
 
 ``` r
+
 available_cortical_surfaces()
 #> [1] "pial"          "white"         "midthickness"  "semi-inflated"
 #> [5] "sphere"        "smoothwm"      "orig"
@@ -90,6 +95,7 @@ ggseg.meshes integrates with
 for 3D rendering:
 
 ``` r
+
 library(ggseg3d)
 
 ggseg3d(atlas = dk(), surface = "pial") |>
