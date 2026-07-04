@@ -47,8 +47,10 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
   )
 
   graphics::segments(
-    x[edges$from], y[edges$from],
-    x[edges$to], y[edges$to],
+    x[edges$from],
+    y[edges$from],
+    x[edges$to],
+    y[edges$to],
     col = grDevices::adjustcolor(fg, alpha.f = 0.4),
     lwd = 0.15
   )
