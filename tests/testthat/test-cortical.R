@@ -11,18 +11,18 @@ describe("get_cortical_mesh()", {
     for (hemi in c("lh", "rh")) {
       for (surf in available_cortical_surfaces()) {
         mesh <- get_cortical_mesh(hemi, surf)
-        expect_equal(nrow(mesh$vertices), 10242)
-        expect_equal(nrow(mesh$faces), 20480)
+        expect_identical(nrow(mesh$vertices), 10242L)
+        expect_identical(nrow(mesh$faces), 20480L)
       }
     }
   })
 
   it("uses 1-based face indices", {
     mesh <- get_cortical_mesh("lh", "orig")
-    expect_true(min(mesh$faces$i) >= 1)
-    expect_true(min(mesh$faces$j) >= 1)
-    expect_true(min(mesh$faces$k) >= 1)
-    expect_equal(attr(mesh, "face_index_base"), 1L)
+    expect_gte(min(mesh$faces$i), 1)
+    expect_gte(min(mesh$faces$j), 1)
+    expect_gte(min(mesh$faces$k), 1)
+    expect_identical(attr(mesh, "face_index_base"), 1L)
   })
 
   it("returns numeric data.frames", {
@@ -52,6 +52,6 @@ describe("available_cortical_surfaces()", {
       "smoothwm",
       "orig"
     )
-    expect_equal(surfs, expected)
+    expect_identical(surfs, expected)
   })
 })

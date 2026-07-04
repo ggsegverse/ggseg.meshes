@@ -72,7 +72,7 @@ can_render_png <- function() {
   )
 }
 
-fig_dir = "vignettes/figures"
+fig_dir <- "vignettes/figures"
 if (!can_render_png()) {
   cli::cli_alert_warning("PNG rendering not available, skipping figures")
   return(invisible(NULL))
