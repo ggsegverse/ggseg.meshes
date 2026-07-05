@@ -14,13 +14,13 @@ Source:
 [`DESCRIPTION`](https://github.com/ggsegverse/ggseg.meshes/blob/main/DESCRIPTION)
 
 Mowinckel A (2026). *ggseg.meshes: Additional Brain Surface Meshes for
-the 'ggsegverse' Ecosystem*. R package version 0.0.1,
+the 'ggsegverse' Ecosystem*. R package version 0.0.1.9000,
 <https://github.com/ggsegverse/ggseg.meshes>.
 
     @Manual{,
       title = {ggseg.meshes: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem},
       author = {Athanasia Mo Mowinckel},
       year = {2026},
-      note = {R package version 0.0.1},
+      note = {R package version 0.0.1.9000},
       url = {https://github.com/ggsegverse/ggseg.meshes},
     }

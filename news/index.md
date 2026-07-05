@@ -1,5 +1,7 @@
 # Changelog
 
+## ggseg.meshes (development version)
+
 ## ggseg.meshes 0.0.1
 
 CRAN release: 2026-04-09
