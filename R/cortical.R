@@ -1,6 +1,11 @@
 .cortical_surfaces <- c(
-  "pial", "white", "midthickness", "semi-inflated",
-  "sphere", "smoothwm", "orig"
+  "pial",
+  "white",
+  "midthickness",
+  "semi-inflated",
+  "sphere",
+  "smoothwm",
+  "orig"
 )
 
 #' Get cortical brain surface mesh

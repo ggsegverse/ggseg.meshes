@@ -45,7 +45,7 @@ hex_args <- list(
   p_family = "mono",
   p_size = 7,
   p_color = "#a8c5cb",
-  p_y = .5,
+  p_y = 0.5,
   h_fill = "#13293a",
   h_color = "#29393e"
 )
