@@ -1,4 +1,4 @@
-.cerebellar_surfaces <- c("suit_flat")
+.cerebellar_surfaces <- "suit_flat"
 
 #' Get SUIT cerebellar flatmap mesh
 #'

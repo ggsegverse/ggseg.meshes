@@ -47,8 +47,10 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
   )
 
   graphics::segments(
-    x[edges$from], y[edges$from],
-    x[edges$to], y[edges$to],
+    x[edges$from],
+    y[edges$from],
+    x[edges$to],
+    y[edges$to],
     col = grDevices::adjustcolor(fg, alpha.f = 0.4),
     lwd = 0.15
   )
@@ -70,25 +72,29 @@ can_render_png <- function() {
   )
 }
 
-fig_dir = "vignettes/figures"
-if (!can_render_png()) {
-  cli::cli_alert_warning("PNG rendering not available, skipping figures")
-  return(invisible(NULL))
-}
+make_vignette_figures <- function(fig_dir = "vignettes/figures") {
+  if (!can_render_png()) {
+    cli::cli_alert_warning("PNG rendering not available, skipping figures")
+    return(invisible(NULL))
+  }
 
-if (!dir.exists(fig_dir)) {
-  dir.create(fig_dir, recursive = TRUE)
-}
+  if (!dir.exists(fig_dir)) {
+    dir.create(fig_dir, recursive = TRUE)
+  }
 
-for (surf in available_cortical_surfaces()) {
-  mesh <- get_cortical_mesh("lh", surf)
-  outfile <- file.path(fig_dir, paste0("mesh-", surf, ".png"))
-  render_mesh_png(mesh, outfile)
+  for (surf in available_cortical_surfaces()) {
+    mesh <- get_cortical_mesh("lh", surf)
+    outfile <- file.path(fig_dir, paste0("mesh-", surf, ".png"))
+    render_mesh_png(mesh, outfile)
+    cli::cli_alert_success("Saved {outfile}")
+  }
+
+  flat <- get_cerebellar_flatmap()
+  outfile <- file.path(fig_dir, "mesh-suit_flat.png")
+  render_mesh_png(flat, outfile)
   cli::cli_alert_success("Saved {outfile}")
+
+  invisible(NULL)
 }
 
-flat <- get_cerebellar_flatmap()
-outfile <- file.path(fig_dir, "mesh-suit_flat.png")
-render_mesh_png(flat, outfile)
-cli::cli_alert_success("Saved {outfile}")
-invisible(NULL)
+make_vignette_figures()
