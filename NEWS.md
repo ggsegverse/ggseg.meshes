@@ -4,6 +4,13 @@
   their display size, cutting the source tarball from 5.3 MB to under 2.5 MB
   and back below the CRAN 5 MB limit. The figures themselves are unchanged.
 - Dropped `ggseg.formats` from `Suggests`; it was referenced only in prose.
+- Moved `freesurfer`, `freesurferformats` and `gifti` from `Suggests` to
+  `Config/Needs/data-raw`, and recorded `magick` there too. All four are used
+  only by the mesh- and figure-building scripts in `data-raw/`, which is not
+  part of the built package, so checking or installing `ggseg.meshes` no
+  longer asks for them.
+- Documentation is regenerated with roxygen2 8.1.0, matching the rest of the
+  ggsegverse packages.
 
 # ggseg.meshes 0.0.1
 
