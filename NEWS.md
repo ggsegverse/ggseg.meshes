@@ -1,5 +1,10 @@
 # ggseg.meshes (development version)
 
+- Vignette figures and the package logo are written as 8-bit palette PNGs at
+  their display size, cutting the source tarball from 5.3 MB to under 2.5 MB
+  and back below the CRAN 5 MB limit. The figures themselves are unchanged.
+- Dropped `ggseg.formats` from `Suggests`; it was referenced only in prose.
+
 # ggseg.meshes 0.0.1
 
 ## New features
