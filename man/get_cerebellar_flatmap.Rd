@@ -34,5 +34,12 @@ rendered.
 }
 \examples{
 mesh <- get_cerebellar_flatmap()
-nrow(mesh$vertices)
+str(mesh, max.level = 2)
+head(mesh$faces)
+attr(mesh, "face_index_base")
 }
+\seealso{
+Other cerebellar meshes:
+\code{\link[=available_cerebellar_surfaces]{available_cerebellar_surfaces()}}
+}
+\concept{cerebellar meshes}

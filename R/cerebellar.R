@@ -23,10 +23,13 @@
 #'   (data.frame with i, j, k, 0-based indices matching `ggseg.formats`
 #'   convention for cerebellar meshes).
 #'   Has attribute `face_index_base = 0L`.
+#' @family cerebellar meshes
 #' @export
 #' @examples
 #' mesh <- get_cerebellar_flatmap()
-#' nrow(mesh$vertices)
+#' str(mesh, max.level = 2)
+#' head(mesh$faces)
+#' attr(mesh, "face_index_base")
 get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
   surface <- match.arg(surface)
 
@@ -43,6 +46,7 @@ get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
 #' List available cerebellar surfaces
 #'
 #' @return Character vector of available surface names.
+#' @family cerebellar meshes
 #' @export
 #' @examples
 #' available_cerebellar_surfaces()

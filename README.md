@@ -18,26 +18,14 @@ cortical and cerebellar surfaces beyond the inflated cortical and SUIT
 
 ## Meshes
 
-### Cortical (fsaverage5)
+Seven cortical surfaces at fsaverage5 resolution (10,242 vertices,
+20,480 faces per hemisphere), and the SUIT cerebellar flatmap (28,935
+vertices).
 
-All cortical meshes are at fsaverage5 resolution (10,242 vertices,
-20,480 faces per hemisphere).
-
-| Surface         | Description                                 |
-|-----------------|---------------------------------------------|
-| `pial`          | Grey matter / CSF boundary                  |
-| `white`         | Grey / white matter boundary                |
-| `midthickness`  | Midpoint of pial and white surfaces         |
-| `semi-inflated` | 35/65 blend of white and inflated           |
-| `sphere`        | Spherical registration surface              |
-| `smoothwm`      | Smoothed white matter surface               |
-| `orig`          | Original surface before topology correction |
-
-### Cerebellar (SUIT)
-
-| Surface     | Description                               |
-|-------------|-------------------------------------------|
-| `suit_flat` | SUIT flatmap projection (28,935 vertices) |
+`available_cortical_surfaces()` and `available_cerebellar_surfaces()`
+list them. What each surface is and when to reach for it is described
+once, in [the introductory
+vignette](https://ggsegverse.github.io/ggseg.meshes/articles/ggseg-meshes.html).
 
 ## Installation
 

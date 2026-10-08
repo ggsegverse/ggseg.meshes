@@ -4,6 +4,11 @@
   the logo is additionally resized to its display size, cutting the source
   tarball from 5.3 MB to under 2.5 MB and back below the CRAN 5 MB limit. The
   figures are unchanged in size and content.
+- `get_cortical_mesh()` now documents its coordinate convention: the meshes are
+  rotated 90 degrees from FreeSurfer's native axes, so `x` is
+  anterior-posterior and `y` is left-right.
+- Documented that the cortical face table matches the ggseg.formats inflated
+  mesh in connectivity but not in index base: it is 1-based, that one 0-based.
 - Corrected `get_cerebellar_flatmap()`'s documentation: the flatmap is the
   first 28,935 vertices of the 30,013-vertex SUIT 3D pial surface, not a
   vertex-for-vertex match, and its `z` is exactly zero.
