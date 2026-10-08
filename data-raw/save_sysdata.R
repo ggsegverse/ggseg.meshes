@@ -82,7 +82,7 @@ save_sysdata <- function(envir = parent.frame(), path = "R/sysdata.rda") {
     stop(
       path,
       " contains object(s) absent from sysdata_index_base: ",
-      paste(orphans, collapse = ", "),
+      toString(orphans),
       ". Add them (with their face index base) or this save would drop them.",
       call. = FALSE
     )
