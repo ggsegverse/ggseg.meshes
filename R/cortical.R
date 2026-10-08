@@ -44,9 +44,11 @@ get_cortical_mesh <- function(
     cli::cli_abort("Unknown surface: {.val {surface}}")
   )
 
-  mesh <- mesh_data[[hemisphere]]
-  attr(mesh, "face_index_base") <- 1L
-  mesh
+  with_face_index_base(
+    mesh_data[[hemisphere]],
+    1L,
+    paste(hemisphere, surface, sep = "_")
+  )
 }
 
 

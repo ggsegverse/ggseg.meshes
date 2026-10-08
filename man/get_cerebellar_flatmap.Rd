@@ -21,9 +21,16 @@ representation of the cerebellar cortex, useful for visualising cerebellar
 parcellations without 3D rendering.
 }
 \details{
-The flatmap has z-coordinates near zero (flat projection). Vertex count
-matches the SUIT 3D pial surface in \code{ggseg.formats}, so vertex indices
-from cerebellar atlases map directly to this mesh.
+The projection is exactly flat: \code{z} is \code{0} for every one of the 28,935
+vertices.
+
+The flatmap's vertices are the first 28,935 of the 30,013 in the SUIT 3D
+pial surface in \code{ggseg.formats}, in the same order. The remaining 1,078 are
+the peduncular cap, which has no flatmap counterpart. A cerebellar atlas
+vertex index below 28,935 therefore applies to this mesh unchanged; indices
+from 28,935 upwards cannot be drawn on the flatmap. 101 of the 28,935
+vertices appear in no face, so values on them are carried but never
+rendered.
 }
 \examples{
 mesh <- get_cerebellar_flatmap()
