@@ -75,8 +75,20 @@ save_sysdata <- function(envir = parent.frame(), path = "R/sysdata.rda") {
     load(path, envir = existing)
   }
 
-  out <- new.env(parent = emptyenv())
   names <- names(sysdata_index_base)
+
+  orphans <- setdiff(ls(existing), names)
+  if (length(orphans) > 0) {
+    stop(
+      path,
+      " contains object(s) absent from sysdata_index_base: ",
+      paste(orphans, collapse = ", "),
+      ". Add them (with their face index base) or this save would drop them.",
+      call. = FALSE
+    )
+  }
+
+  out <- new.env(parent = emptyenv())
 
   for (name in names) {
     obj <- if (exists(name, envir = envir, inherits = FALSE)) {
