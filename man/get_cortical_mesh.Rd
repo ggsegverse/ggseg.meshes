@@ -13,16 +13,38 @@ get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 \code{"semi-inflated"}, \code{"sphere"}, \code{"smoothwm"}, or \code{"orig"}}
 }
 \value{
-A list with \code{vertices} (data.frame with x, y, z) and \code{faces}
-(data.frame with i, j, k, 1-based indices).
-Has attribute \code{face_index_base = 1L}.
+A list with \code{vertices} (data.frame with x, y, z, in the rotated
+convention described above) and \code{faces} (data.frame with i, j, k, 1-based
+indices). Has attribute \code{face_index_base = 1L}.
 }
 \description{
 Retrieves a cortical brain surface mesh for the specified hemisphere and
 surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 20,480 faces per hemisphere).
 }
+\details{
+The stored coordinates are rotated 90 degrees from FreeSurfer's native axes,
+so they do not mean what the names x, y, z usually mean on a
+FreeSurfer-derived surface. \code{x} is the anterior-posterior axis (positive
+anterior), \code{y} is the left-right axis (positive left, so the left hemisphere
+sits at positive \code{y}), and \code{z} is the superior-inferior axis (positive
+superior, unrotated). Plotting \code{x} against \code{z} therefore gives a lateral
+view with anterior to the right and superior at the top; plotting \code{y}
+against \code{z} gives a coronal view.
+}
 \examples{
 mesh <- get_cortical_mesh("lh", "pial")
-nrow(mesh$vertices)
+str(mesh, max.level = 2)
+head(mesh$faces)
+attr(mesh, "face_index_base")
 }
+\seealso{
+\code{ggseg.formats::get_brain_mesh()} for the inflated cortical mesh
+bundled with the core packages, whose faces are 0-based, and
+\code{ggseg3d::resolve_brain_mesh()}, which resolves these surfaces for 3D
+rendering.
+
+Other cortical meshes:
+\code{\link[=available_cortical_surfaces]{available_cortical_surfaces()}}
+}
+\concept{cortical meshes}
