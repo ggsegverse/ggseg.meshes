@@ -33,4 +33,4 @@ Roxygen: list(markdown = TRUE)
 URL: https://github.com/ggsegverse/ggseg.meshes,
     https://ggsegverse.github.io/ggseg.meshes/
 BugReports: https://github.com/ggsegverse/ggseg.meshes/issues
-Config/roxygen2/version: 8.1.0
+Config/roxygen2/version: 8.1.1
