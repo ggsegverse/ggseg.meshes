@@ -20,3 +20,6 @@
 ^codemeta\.json$
 ^CRAN-SUBMISSION$
 ^man/figures/logo\.svg$
+^revdep$
+^.*\.Rcheck$
+^.*\.tar\.gz$

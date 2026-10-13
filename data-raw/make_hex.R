@@ -52,3 +52,8 @@ hex_args <- list(
 
 do.call(sticker, c(list(p, filename = "man/figures/logo.svg"), hex_args))
 do.call(sticker, c(list(p, filename = "man/figures/logo.png"), hex_args))
+
+magick::image_write(
+  magick::image_resize(magick::image_read("man/figures/logo.png"), "240x278"),
+  "man/figures/logo.png"
+)

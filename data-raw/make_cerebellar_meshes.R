@@ -4,9 +4,6 @@
 # as a mesh object alongside the cortical meshes.
 # Requires gifti package.
 #
-# IMPORTANT: Run make_cortical_meshes.R first — this script loads
-# R/sysdata.rda to append cerebellar data alongside cortical meshes.
-#
 # Run with: source("data-raw/make_cerebellar_meshes.R")
 
 if (!requireNamespace("gifti", quietly = TRUE)) {
@@ -37,20 +34,5 @@ cli::cli_alert_success(
   "SUIT flatmap: {nrow(vertices)}v, {nrow(faces)}f"
 )
 
-load("R/sysdata.rda")
-
-usethis::use_data(
-  brain_mesh_pial,
-  brain_mesh_white,
-  brain_mesh_semi_inflated,
-  brain_mesh_midthickness,
-  brain_mesh_sphere,
-  brain_mesh_smoothwm,
-  brain_mesh_orig,
-  cerebellar_mesh_suit_flat,
-  internal = TRUE,
-  overwrite = TRUE,
-  compress = "xz"
-)
-
-cli::cli_alert_success("Saved cerebellar flatmap mesh to R/sysdata.rda")
+source("data-raw/save_sysdata.R")
+save_sysdata()

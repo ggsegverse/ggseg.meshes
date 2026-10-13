@@ -6,9 +6,16 @@
 #' representation of the cerebellar cortex, useful for visualising cerebellar
 #' parcellations without 3D rendering.
 #'
-#' The flatmap has z-coordinates near zero (flat projection). Vertex count
-#' matches the SUIT 3D pial surface in `ggseg.formats`, so vertex indices
-#' from cerebellar atlases map directly to this mesh.
+#' The projection is exactly flat: `z` is `0` for every one of the 28,935
+#' vertices.
+#'
+#' The flatmap's vertices are the first 28,935 of the 30,013 in the SUIT 3D
+#' pial surface in `ggseg.formats`, in the same order. The remaining 1,078 are
+#' the peduncular cap, which has no flatmap counterpart. A cerebellar atlas
+#' vertex index below 28,935 therefore applies to this mesh unchanged; indices
+#' from 28,935 upwards cannot be drawn on the flatmap. 101 of the 28,935
+#' vertices appear in no face, so values on them are carried but never
+#' rendered.
 #'
 #' @param surface Surface type. Currently only `"suit_flat"`.
 #'
@@ -16,10 +23,13 @@
 #'   (data.frame with i, j, k, 0-based indices matching `ggseg.formats`
 #'   convention for cerebellar meshes).
 #'   Has attribute `face_index_base = 0L`.
+#' @family cerebellar meshes
 #' @export
 #' @examples
 #' mesh <- get_cerebellar_flatmap()
-#' nrow(mesh$vertices)
+#' str(mesh, max.level = 2)
+#' head(mesh$faces)
+#' attr(mesh, "face_index_base")
 get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
   surface <- match.arg(surface)
 
@@ -29,14 +39,14 @@ get_cerebellar_flatmap <- function(surface = .cerebellar_surfaces) {
     cli::cli_abort("Unknown surface: {.val {surface}}")
   )
 
-  attr(mesh, "face_index_base") <- 0L
-  mesh
+  with_face_index_base(mesh, 0L, paste0("cerebellar_mesh_", surface))
 }
 
 
 #' List available cerebellar surfaces
 #'
 #' @return Character vector of available surface names.
+#' @family cerebellar meshes
 #' @export
 #' @examples
 #' available_cerebellar_surfaces()

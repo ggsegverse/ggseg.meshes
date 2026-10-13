@@ -15,3 +15,8 @@ List available cerebellar surfaces
 \examples{
 available_cerebellar_surfaces()
 }
+\seealso{
+Other cerebellar meshes:
+\code{\link[=get_cerebellar_flatmap]{get_cerebellar_flatmap()}}
+}
+\concept{cerebellar meshes}

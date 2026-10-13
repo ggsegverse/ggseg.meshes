@@ -15,3 +15,8 @@ List available cortical surfaces
 \examples{
 available_cortical_surfaces()
 }
+\seealso{
+Other cortical meshes:
+\code{\link[=get_cortical_mesh]{get_cortical_mesh()}}
+}
+\concept{cortical meshes}

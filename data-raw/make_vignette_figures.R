@@ -34,7 +34,13 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
   bg <- "#13293a"
   fg <- "#a8c5cb"
 
-  grDevices::png(filename, width = width, height = height, bg = bg)
+  grDevices::png(
+    filename,
+    width = width,
+    height = height,
+    bg = bg,
+    type = "cairo"
+  )
   graphics::par(mar = c(1, 1, 1, 1))
   graphics::plot(
     NULL,
@@ -56,6 +62,8 @@ render_mesh_png <- function(mesh, filename, width = 600, height = 400) {
   )
 
   grDevices::dev.off()
+
+  magick::image_write(magick::image_read(filename), filename, format = "png8")
 }
 
 
@@ -63,7 +71,7 @@ can_render_png <- function() {
   tryCatch(
     {
       tmp <- tempfile(fileext = ".png")
-      grDevices::png(tmp, width = 10, height = 10)
+      grDevices::png(tmp, width = 10, height = 10, type = "cairo")
       grDevices::dev.off()
       unlink(tmp)
       TRUE

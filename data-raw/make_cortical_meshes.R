@@ -125,17 +125,5 @@ brain_mesh_smoothwm <- make_pair("smoothwm")
 brain_mesh_orig <- make_pair("orig")
 brain_mesh_midthickness <- make_pair("midthickness")
 
-usethis::use_data(
-  brain_mesh_pial,
-  brain_mesh_white,
-  brain_mesh_semi_inflated,
-  brain_mesh_midthickness,
-  brain_mesh_sphere,
-  brain_mesh_smoothwm,
-  brain_mesh_orig,
-  internal = TRUE,
-  overwrite = TRUE,
-  compress = "xz"
-)
-
-cli::cli_alert_success("Saved all cortical meshes to R/sysdata.rda")
+source("data-raw/save_sysdata.R")
+save_sysdata()
