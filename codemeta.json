@@ -48,54 +48,6 @@
   "softwareSuggestions": [
     {
       "@type": "SoftwareApplication",
-      "identifier": "freesurfer",
-      "name": "freesurfer",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=freesurfer"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "freesurferformats",
-      "name": "freesurferformats",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=freesurferformats"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "gifti",
-      "name": "gifti",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=gifti"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ggseg.formats",
-      "name": "ggseg.formats",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=ggseg.formats"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "knitr",
       "name": "knitr",
       "provider": {
@@ -153,7 +105,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "3754.474KB",
+  "fileSize": "2201.916KB",
   "releaseNotes": "https://github.com/ggsegverse/ggseg.meshes/blob/main/NEWS.md",
   "readme": "https://github.com/ggsegverse/ggseg.meshes/blob/main/README.md",
   "contIntegration": ["https://github.com/ggsegverse/ggseg.meshes/actions/workflows/test-coverage.yaml", "https://github.com/ggsegverse/ggseg.meshes/actions/workflows/code-quality.yaml", "https://github.com/ggsegverse/ggseg.meshes/actions/workflows/R-CMD-check.yaml"],
