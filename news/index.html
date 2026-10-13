@@ -42,7 +42,19 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ggsegmeshes-development-version">ggseg.meshes (development version)<a class="anchor" aria-label="anchor" href="#ggsegmeshes-development-version"></a></h2>
-</div>
+<ul><li>Vignette figures and the package logo are written as 8-bit palette PNGs, and the logo is additionally resized to its display size, cutting the source tarball from 5.3 MB to under 2.5 MB and back below the CRAN 5 MB limit. The figures are unchanged in size and content.</li>
+<li>
+<code><a href="../reference/get_cortical_mesh.html">get_cortical_mesh()</a></code> now documents its coordinate convention: the meshes are rotated 90 degrees from FreeSurfer’s native axes, so <code>x</code> is anterior-posterior and <code>y</code> is left-right.</li>
+<li>Documented that the cortical face table matches the ggseg.formats inflated mesh in connectivity but not in index base: it is 1-based, that one 0-based.</li>
+<li>Corrected <code><a href="../reference/get_cerebellar_flatmap.html">get_cerebellar_flatmap()</a></code>’s documentation: the flatmap is the first 28,935 vertices of the 30,013-vertex SUIT 3D pial surface, not a vertex-for-vertex match, and its <code>z</code> is exactly zero.</li>
+<li>
+<code>face_index_base</code> is now verified against the stored faces instead of being stamped on as a literal; an inconsistent mesh errors rather than shipping a wrong attribute.</li>
+<li>The <code>data-raw/</code> scripts now share <code>data-raw/save_sysdata.R</code>, so re-running either one can no longer drop the other’s meshes from <code>R/sysdata.rda</code>.</li>
+<li>Recorded the remaining <code>data-raw/</code> dependencies in <code>Config/Needs/data-raw</code>.</li>
+<li>Dropped <code>ggseg.formats</code> from <code>Suggests</code>; it was referenced only in prose.</li>
+<li>Moved <code>freesurfer</code>, <code>freesurferformats</code> and <code>gifti</code> from <code>Suggests</code> to <code>Config/Needs/data-raw</code>, and recorded <code>magick</code> there too. All four are used only by the mesh- and figure-building scripts in <code>data-raw/</code>, which is not part of the built package, so checking or installing <code>ggseg.meshes</code> no longer asks for them.</li>
+<li>Documentation is regenerated with roxygen2 8.1.0, matching the rest of the ggsegverse packages.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="ggsegmeshes-001">ggseg.meshes 0.0.1<a class="anchor" aria-label="anchor" href="#ggsegmeshes-001"></a></h2><p class="text-muted">CRAN release: 2026-04-09</p>
 <div class="section level3">

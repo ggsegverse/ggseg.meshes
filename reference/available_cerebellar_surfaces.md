@@ -12,6 +12,11 @@ available_cerebellar_surfaces()
 
 Character vector of available surface names.
 
+## See also
+
+Other cerebellar meshes:
+[`get_cerebellar_flatmap()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cerebellar_flatmap.md)
+
 ## Examples
 
 ``` r

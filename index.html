@@ -72,61 +72,8 @@
 <div class="section level2">
 <h2 id="meshes">Meshes<a class="anchor" aria-label="anchor" href="#meshes"></a>
 </h2>
-<div class="section level3">
-<h3 id="cortical-fsaverage5">Cortical (fsaverage5)<a class="anchor" aria-label="anchor" href="#cortical-fsaverage5"></a>
-</h3>
-<p>All cortical meshes are at fsaverage5 resolution (10,242 vertices, 20,480 faces per hemisphere).</p>
-<table class="table">
-<thead><tr>
-<th>Surface</th>
-<th>Description</th>
-</tr></thead>
-<tbody>
-<tr>
-<td><code>pial</code></td>
-<td>Grey matter / CSF boundary</td>
-</tr>
-<tr>
-<td><code>white</code></td>
-<td>Grey / white matter boundary</td>
-</tr>
-<tr>
-<td><code>midthickness</code></td>
-<td>Midpoint of pial and white surfaces</td>
-</tr>
-<tr>
-<td><code>semi-inflated</code></td>
-<td>35/65 blend of white and inflated</td>
-</tr>
-<tr>
-<td><code>sphere</code></td>
-<td>Spherical registration surface</td>
-</tr>
-<tr>
-<td><code>smoothwm</code></td>
-<td>Smoothed white matter surface</td>
-</tr>
-<tr>
-<td><code>orig</code></td>
-<td>Original surface before topology correction</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section level3">
-<h3 id="cerebellar-suit">Cerebellar (SUIT)<a class="anchor" aria-label="anchor" href="#cerebellar-suit"></a>
-</h3>
-<table class="table">
-<thead><tr>
-<th>Surface</th>
-<th>Description</th>
-</tr></thead>
-<tbody><tr>
-<td><code>suit_flat</code></td>
-<td>SUIT flatmap projection (28,935 vertices)</td>
-</tr></tbody>
-</table>
-</div>
+<p>Seven cortical surfaces at fsaverage5 resolution (10,242 vertices, 20,480 faces per hemisphere), and the SUIT cerebellar flatmap (28,935 vertices).</p>
+<p><code><a href="reference/available_cortical_surfaces.html">available_cortical_surfaces()</a></code> and <code><a href="reference/available_cerebellar_surfaces.html">available_cerebellar_surfaces()</a></code> list them. What each surface is and when to reach for it is described once, in <a href="https://ggsegverse.github.io/ggseg.meshes/articles/ggseg-meshes.html">the introductory vignette</a>.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>

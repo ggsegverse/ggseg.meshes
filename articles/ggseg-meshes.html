@@ -185,10 +185,10 @@ cerebellar visualisation.</p>
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/available_cerebellar_surfaces.html">available_cerebellar_surfaces</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "suit_flat"</span></span></code></pre></div>
 <p>The SUIT flatmap is a 2D flattened projection of the cerebellar
-cortex with 28,935 vertices. Vertex indices from cerebellar atlases map
-directly to this surface since it shares the same vertex space as the
-SUIT 3D pial mesh in ggseg.formats (minus the 1,078 peduncular cap
-vertices).</p>
+cortex with 28,935 vertices. Its relationship to the SUIT 3D pial mesh
+in ggseg.formats – which vertex indices carry over, and which cannot be
+drawn – is documented in full at <code><a href="../reference/get_cerebellar_flatmap.html">?get_cerebellar_flatmap</a></code>,
+which is the authority for that correspondence.</p>
 <div class="float">
 <img src="figures/mesh-suit_flat.png" width="300" alt="SUIT cerebellar flatmap"><div class="figcaption">SUIT cerebellar flatmap</div>
 </div>
@@ -198,7 +198,10 @@ vertices).</p>
 <h2 id="accessing-meshes">Accessing meshes<a class="anchor" aria-label="anchor" href="#accessing-meshes"></a>
 </h2>
 <p>Each mesh is a list with <code>vertices</code> (data.frame: x, y, z)
-and <code>faces</code> (data.frame: i, j, k).</p>
+and <code>faces</code> (data.frame: i, j, k). The cortical coordinates
+are rotated 90 degrees from FreeSurfer’s native axes, so <code>x</code>
+is anterior-posterior and <code>y</code> is left-right; see
+<code><a href="../reference/get_cortical_mesh.html">?get_cortical_mesh</a></code> for the full convention.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mesh</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_cortical_mesh.html">get_cortical_mesh</a></span><span class="op">(</span><span class="st">"lh"</span>, <span class="st">"pial"</span><span class="op">)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">vertices</span><span class="op">)</span></span>
@@ -243,11 +246,17 @@ surface:</p>
 <div class="section level2">
 <h2 id="mesh-structure">Mesh structure<a class="anchor" aria-label="anchor" href="#mesh-structure"></a>
 </h2>
-<p>All cortical meshes share the same face topology (triangle
-connectivity) as the inflated mesh in ggseg.formats. This means vertex
-indices from cortical atlases work with any surface – the same vertex
-index refers to the same anatomical location across pial, white,
-inflated, sphere, etc.</p>
+<p>All cortical meshes here share one face table, byte-for-byte, so
+vertex indices from cortical atlases work with any of them – the same
+vertex index refers to the same anatomical location across pial, white,
+semi-inflated, sphere, and the rest.</p>
+<p>That face table describes the same triangle connectivity as the
+inflated mesh in ggseg.formats, but the two are <strong>not</strong>
+interchangeable as written: the ggseg.formats faces are 0-based and
+these are 1-based.
+<code>ggseg.formats::get_brain_mesh("lh")$faces + 1</code> is exactly
+the face table returned here. Read the <code>face_index_base</code>
+attribute rather than assuming a base, on either side.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/lapply.html" class="external-link">vapply</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="../reference/available_cortical_surfaces.html">available_cortical_surfaces</a></span><span class="op">(</span><span class="op">)</span>,</span>
@@ -260,9 +269,6 @@ inflated, sphere, etc.</p>
 <span><span class="co">#&gt;           pial white midthickness semi-inflated sphere smoothwm  orig</span></span>
 <span><span class="co">#&gt; vertices 10242 10242        10242         10242  10242    10242 10242</span></span>
 <span><span class="co">#&gt; faces    20480 20480        20480         20480  20480    20480 20480</span></span></code></pre></div>
-<p>The cerebellar flatmap shares vertex indices with the SUIT 3D pial
-mesh (indices 0–28,934), so cerebellar atlas vertex assignments apply to
-both the 3D and flatmap representations.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>

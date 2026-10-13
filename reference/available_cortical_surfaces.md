@@ -12,6 +12,11 @@ available_cortical_surfaces()
 
 Character vector of available surface names.
 
+## See also
+
+Other cortical meshes:
+[`get_cortical_mesh()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cortical_mesh.md)
+
 ## Examples
 
 ``` r
