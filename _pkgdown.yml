@@ -14,11 +14,9 @@ reference:
   - title: Cortical Meshes
     desc: Access fsaverage5 cortical surface meshes
     contents:
-      - get_cortical_mesh
-      - available_cortical_surfaces
+      - has_concept("cortical meshes")
 
   - title: Cerebellar Meshes
     desc: Access SUIT cerebellar surface meshes
     contents:
-      - get_cerebellar_flatmap
-      - available_cerebellar_surfaces
+      - has_concept("cerebellar meshes")
