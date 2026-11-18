@@ -1,12 +1,33 @@
 # ggseg.meshes (development version)
 
+## Breaking changes
+
+- Cortical coordinates are FreeSurfer's native axes: `x` left-right, `y`
+  anterior-posterior, `z` superior-inferior. They were stored rotated 90
+  degrees, and `ggseg3d` rotated them back, so the pair was a round trip to
+  identity for the only consumer there was. Code reading these meshes directly
+  and relying on the rotated convention needs its axes swapped: old `x` is now
+  `y`, old `y` is now `-x`. Faces are unchanged, so atlas vertex indices still
+  address the same vertices.
+
+## New features
+
+- Every mesh carries a `ggseg.formats::mesh_space()` recording its vertex
+  space, hemisphere, whether the coordinates are anatomical and the mapping to
+  MNI305, so a consumer places a point from what the mesh says rather than from
+  which package it came from. `pial`, `white`, `smoothwm`, `orig` and
+  `midthickness` map to MNI305 by the identity; `semi-inflated` and `sphere`
+  record no mapping, every vertex having been moved.
+
+- Surfaces are read through `ggseg.extra::read_surface_mesh()`, so the
+  ecosystem decides in one place how to read a surface and what its faces count
+  from. `save_sysdata()` now refuses a mesh that records no frame, or an
+  anatomical one with no mapping.
+
 - Vignette figures and the package logo are written as 8-bit palette PNGs, and
   the logo is additionally resized to its display size, cutting the source
   tarball from 5.3 MB to under 2.5 MB and back below the CRAN 5 MB limit. The
   figures are unchanged in size and content.
-- `get_cortical_mesh()` now documents its coordinate convention: the meshes are
-  rotated 90 degrees from FreeSurfer's native axes, so `x` is
-  anterior-posterior and `y` is left-right.
 - Documented that the cortical face table matches the ggseg.formats inflated
   mesh in connectivity but not in index base: it is 1-based, that one 0-based.
 - Corrected `get_cerebellar_flatmap()`'s documentation: the flatmap is the

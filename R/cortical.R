@@ -14,22 +14,35 @@
 #' surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 #' 20,480 faces per hemisphere).
 #'
-#' The stored coordinates are rotated 90 degrees from FreeSurfer's native axes,
-#' so they do not mean what the names x, y, z usually mean on a
-#' FreeSurfer-derived surface. `x` is the anterior-posterior axis (positive
-#' anterior), `y` is the left-right axis (positive left, so the left hemisphere
-#' sits at positive `y`), and `z` is the superior-inferior axis (positive
-#' superior, unrotated). Plotting `x` against `z` therefore gives a lateral
-#' view with anterior to the right and superior at the top; plotting `y`
-#' against `z` gives a coronal view.
+#' Coordinates are FreeSurfer's own: `x` is left-right (negative left), `y` is
+#' anterior-posterior (positive anterior) and `z` is superior-inferior
+#' (positive superior). Plotting `y` against `z` gives a lateral view with
+#' anterior to the right; `x` against `z` gives a coronal view.
+#'
+#' Each mesh carries a [ggseg.formats::mesh_space()], read with
+#' `ggseg.formats::get_mesh_space()`, recording its vertex space, hemisphere,
+#' whether the coordinates are anatomical, and the mapping to MNI305. Reading
+#' that is how a consumer places a point without knowing where the mesh came
+#' from. `pial`, `white`, `smoothwm`, `orig` and `midthickness` are anatomical
+#' and map to MNI305 by the identity, fsaverage being an MNI305 average;
+#' `semi-inflated` and `sphere` have had every vertex moved and so record no
+#' mapping at all.
+#'
+#' @section Coordinates changed in 0.0.1.9002:
+#' Before that version the stored coordinates were rotated 90 degrees from
+#' FreeSurfer's native axes -- stored `x` was anterior-posterior and stored
+#' `y` was left-right -- and `ggseg3d` rotated them back, so the pair was a
+#' round trip to identity for the only consumer there was. Code that read
+#' these meshes directly and relied on the rotated convention needs its axes
+#' swapped: old `x` is now `y`, and old `y` is now `-x`.
 #'
 #' @param hemisphere `"lh"` or `"rh"`
 #' @param surface Surface type: `"pial"`, `"white"`, `"midthickness"`,
 #'   `"semi-inflated"`, `"sphere"`, `"smoothwm"`, or `"orig"`
 #'
-#' @return A list with `vertices` (data.frame with x, y, z, in the rotated
-#'   convention described above) and `faces` (data.frame with i, j, k, 1-based
-#'   indices). Has attribute `face_index_base = 1L`.
+#' @return A list with `vertices` (data.frame with x, y, z, in FreeSurfer's
+#'   native axes) and `faces` (data.frame with i, j, k, 1-based indices). Has
+#'   attributes `face_index_base = 1L` and `mesh_space`.
 #' @family cortical meshes
 #' @seealso `ggseg.formats::get_brain_mesh()` for the inflated cortical mesh
 #'   bundled with the core packages, whose faces are 0-based, and

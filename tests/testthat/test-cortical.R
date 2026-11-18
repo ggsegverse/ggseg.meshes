@@ -1,14 +1,24 @@
 # Per-surface vertex signatures. These pin the switch() in get_cortical_mesh()
 # to the right stored object: swapping two surfaces changes the numbers next to
 # the name, which no structural test would catch.
+# A canary on the shipped data: mean and sd of x, y, z per surface. Nothing in
+# the package can change these, so a diff here means the meshes themselves
+# moved.
+#
+# Updated for 0.0.1.9002, which dropped the 90-degree rotation these
+# coordinates used to carry. The values were NOT read off the rebuilt data --
+# that would make this test pass for any rebuild. They are the pre-0.0.1.9002
+# values put through the transform the rebuild was supposed to apply
+# (new x = -old y, new y = old x; the means permute and negate, the sds only
+# permute), which is what makes a mirrored or mis-permuted rebuild fail here.
 lh_signatures <- list(
-  pial = c(-21.851, 29.551, 17.274, 38.313, 18.484, 28.040),
-  white = c(-21.896, 29.425, 17.179, 37.813, 17.397, 27.200),
-  midthickness = c(-21.874, 29.488, 17.226, 38.059, 17.928, 27.611),
-  `semi-inflated` = c(-10.374, 10.894, 6.528, 47.471, 21.712, 34.131),
+  pial = c(-29.551, -21.851, 17.274, 18.484, 38.313, 28.040),
+  white = c(-29.425, -21.896, 17.179, 17.397, 37.813, 27.200),
+  midthickness = c(-29.488, -21.874, 17.226, 17.928, 38.059, 27.611),
+  `semi-inflated` = c(-10.894, -10.374, 6.528, 21.712, 47.471, 34.131),
   sphere = c(0, 0, 0, 57.738, 57.738, 57.738),
-  smoothwm = c(-21.896, 29.425, 17.179, 37.627, 17.146, 27.016),
-  orig = c(-21.902, 29.402, 17.193, 37.759, 17.322, 27.141)
+  smoothwm = c(-29.425, -21.896, 17.179, 17.146, 37.627, 27.016),
+  orig = c(-29.402, -21.902, 17.193, 17.322, 37.759, 27.141)
 )
 
 vertex_signature <- function(mesh) {

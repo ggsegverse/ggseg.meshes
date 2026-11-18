@@ -1,6 +1,6 @@
 Package: ggseg.meshes
 Title: Additional Brain Surface Meshes for the 'ggsegverse' Ecosystem
-Version: 0.0.1.9001
+Version: 0.0.1.9002
 Authors@R: c(
     person("Athanasia Mo", "Mowinckel", , "a.m.mowinckel@psykologi.uio.no", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-5756-0223")),
@@ -20,6 +20,7 @@ Depends:
 Imports:
     cli
 Suggests:
+    ggseg.formats (>= 0.0.4.9028),
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
@@ -27,7 +28,8 @@ VignetteBuilder: knitr
 Config/testthat/edition: 3
 Config/Needs/website: ggsegverse/ggseg.docs
 Config/Needs/data-raw: devtools, freesurfer, freesurferformats,
-    ggplot2, ggsegverse/ggseg.extra, gifti, hexSticker, magick
+    ggplot2, ggsegverse/ggseg.extra, ggsegverse/ggseg.formats, gifti,
+    hexSticker, magick
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/ggsegverse/ggseg.meshes,
