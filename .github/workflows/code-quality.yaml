@@ -13,4 +13,9 @@ permissions:
 jobs:
   code-quality:
     uses: ggsegverse/.github/.github/workflows/code-quality.yaml@main
+    with:
+      # ggseg.formats is in Suggests from 0.0.1.9002 (the meshes carry a
+      # mesh_space() of its class), and it is not on CRAN, so resolution
+      # fails against CRAN alone.
+      extra-repositories: https://ggsegverse.r-universe.dev
     secrets: inherit
