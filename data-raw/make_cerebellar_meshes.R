@@ -1,37 +1,37 @@
 # Generate cerebellar flatmap mesh for ggseg.meshes
 #
-# Reads the SUIT flatmap GIFTI surface from ggseg.extra and stores it
-# as a mesh object alongside the cortical meshes.
-# Requires gifti package.
+# Reads the SUIT flatmap GIFTI surface from ggseg.extra and stores it as a
+# mesh object alongside the cortical meshes. Reading is
+# ggseg.extra::read_surface_mesh()'s job, so the ecosystem decides in one
+# place how to read a surface and what its faces count from.
 #
 # Run with: source("data-raw/make_cerebellar_meshes.R")
 
-if (!requireNamespace("gifti", quietly = TRUE)) {
-  stop("gifti package is required. Install with: install.packages('gifti')")
-}
-
-if (!requireNamespace("ggseg.extra", quietly = TRUE)) {
-  stop("ggseg.extra is required for SUIT surface paths.")
-}
+rlang::check_installed(c("ggseg.extra", "ggseg.formats"))
 
 flatmap_path <- ggseg.extra::suit_flatmap_path()
 cli::cli_alert_info("Reading SUIT flatmap from {flatmap_path}")
 
-gii <- gifti::readgii(flatmap_path)
-
-vertices <- as.data.frame(gii$data[[1]])
-names(vertices) <- c("x", "y", "z")
-
-faces <- as.data.frame(gii$data[[2]])
-names(faces) <- c("i", "j", "k")
-
-cerebellar_mesh_suit_flat <- list(
-  vertices = vertices,
-  faces = faces
+# A flatmap is the extreme case of a surface with no anatomical position:
+# every vertex has been moved to lie in a plane, so anatomical = FALSE and
+# there is no affine to MNI305. Recording that is what stops a consumer
+# placing a point on it and believing the coordinates mean something.
+cerebellar_mesh_suit_flat <- ggseg.extra::read_surface_mesh(
+  flatmap_path,
+  space = ggseg.formats::mesh_space(
+    vertex_space = "suit",
+    hemi = "midline",
+    anatomical = FALSE,
+    units = "mm",
+    surface = "suit-flatmap",
+    source = paste("SUIT", basename(flatmap_path))
+  ),
+  face_index_base = 0L
 )
 
 cli::cli_alert_success(
-  "SUIT flatmap: {nrow(vertices)}v, {nrow(faces)}f"
+  "SUIT flatmap: {nrow(cerebellar_mesh_suit_flat$vertices)}v,
+   {nrow(cerebellar_mesh_suit_flat$faces)}f"
 )
 
 source("data-raw/save_sysdata.R")

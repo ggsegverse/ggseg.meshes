@@ -33,6 +33,29 @@ assert_mesh <- function(mesh, name, expected_base) {
     stop(name, ": NA in vertices or faces", call. = FALSE)
   }
 
+  # Every shipped mesh must say what its coordinates mean. Without it a
+  # consumer infers the frame from which package the mesh came from, which is
+  # what the 0.0.1.9002 rebuild removed -- and a mesh inferred wrongly still
+  # renders a convincing brain.
+  space <- ggseg.formats::get_mesh_space(mesh)
+  if (is.null(space)) {
+    stop(name, ": carries no mesh_space()", call. = FALSE)
+  }
+  if (!identical(attr(mesh, "face_index_base"), expected_base)) {
+    stop(
+      sprintf(
+        "%s: records face_index_base %s, expected %d",
+        name,
+        format(attr(mesh, "face_index_base")),
+        expected_base
+      ),
+      call. = FALSE
+    )
+  }
+  if (isTRUE(space$anatomical) && is.null(space$to_mni305)) {
+    stop(name, ": anatomical but records no to_mni305", call. = FALSE)
+  }
+
   idx <- unlist(mesh$faces, use.names = FALSE)
   n <- nrow(mesh$vertices)
   if (min(idx) != expected_base || max(idx) != n - 1L + expected_base) {

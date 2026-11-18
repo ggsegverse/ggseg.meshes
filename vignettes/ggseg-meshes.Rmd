@@ -66,7 +66,9 @@ Its relationship to the SUIT 3D pial mesh in ggseg.formats -- which vertex indic
 ## Accessing meshes
 
 Each mesh is a list with `vertices` (data.frame: x, y, z) and `faces` (data.frame: i, j, k).
-The cortical coordinates are rotated 90 degrees from FreeSurfer's native axes, so `x` is anterior-posterior and `y` is left-right; see `?get_cortical_mesh` for the full convention.
+The cortical coordinates are FreeSurfer's own: `x` is left-right, `y` is anterior-posterior and `z` is superior-inferior.
+Each mesh also carries a `ggseg.formats::mesh_space()` recording its vertex space, hemisphere, and mapping to MNI305, so a consumer can place a point without knowing which package the mesh came from.
+See `?get_cortical_mesh` for the full convention, including what changed in 0.0.1.9002.
 
 ```{r}
 #| label: access-cortical

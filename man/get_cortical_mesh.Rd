@@ -13,9 +13,9 @@ get_cortical_mesh(hemisphere = c("lh", "rh"), surface = .cortical_surfaces)
 \code{"semi-inflated"}, \code{"sphere"}, \code{"smoothwm"}, or \code{"orig"}}
 }
 \value{
-A list with \code{vertices} (data.frame with x, y, z, in the rotated
-convention described above) and \code{faces} (data.frame with i, j, k, 1-based
-indices). Has attribute \code{face_index_base = 1L}.
+A list with \code{vertices} (data.frame with x, y, z, in FreeSurfer's
+native axes) and \code{faces} (data.frame with i, j, k, 1-based indices). Has
+attributes \code{face_index_base = 1L} and \code{mesh_space}.
 }
 \description{
 Retrieves a cortical brain surface mesh for the specified hemisphere and
@@ -23,15 +23,30 @@ surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 20,480 faces per hemisphere).
 }
 \details{
-The stored coordinates are rotated 90 degrees from FreeSurfer's native axes,
-so they do not mean what the names x, y, z usually mean on a
-FreeSurfer-derived surface. \code{x} is the anterior-posterior axis (positive
-anterior), \code{y} is the left-right axis (positive left, so the left hemisphere
-sits at positive \code{y}), and \code{z} is the superior-inferior axis (positive
-superior, unrotated). Plotting \code{x} against \code{z} therefore gives a lateral
-view with anterior to the right and superior at the top; plotting \code{y}
-against \code{z} gives a coronal view.
+Coordinates are FreeSurfer's own: \code{x} is left-right (negative left), \code{y} is
+anterior-posterior (positive anterior) and \code{z} is superior-inferior
+(positive superior). Plotting \code{y} against \code{z} gives a lateral view with
+anterior to the right; \code{x} against \code{z} gives a coronal view.
+
+Each mesh carries a \code{\link[ggseg.formats:mesh_space]{ggseg.formats::mesh_space()}}, read with
+\code{ggseg.formats::get_mesh_space()}, recording its vertex space, hemisphere,
+whether the coordinates are anatomical, and the mapping to MNI305. Reading
+that is how a consumer places a point without knowing where the mesh came
+from. \code{pial}, \code{white}, \code{smoothwm}, \code{orig} and \code{midthickness} are anatomical
+and map to MNI305 by the identity, fsaverage being an MNI305 average;
+\code{semi-inflated} and \code{sphere} have had every vertex moved and so record no
+mapping at all.
 }
+\section{Coordinates changed in 0.0.1.9002}{
+
+Before that version the stored coordinates were rotated 90 degrees from
+FreeSurfer's native axes -- stored \code{x} was anterior-posterior and stored
+\code{y} was left-right -- and \code{ggseg3d} rotated them back, so the pair was a
+round trip to identity for the only consumer there was. Code that read
+these meshes directly and relied on the rotated convention needs its axes
+swapped: old \code{x} is now \code{y}, and old \code{y} is now \code{-x}.
+}
+
 \examples{
 mesh <- get_cortical_mesh("lh", "pial")
 str(mesh, max.level = 2)
