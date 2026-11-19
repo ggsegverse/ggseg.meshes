@@ -40,10 +40,10 @@ plotting `y` against `z` gives a coronal view.
 
 ## See also
 
-[`ggseg.formats::get_brain_mesh()`](https://ggsegverse.github.io/ggseg.formats/reference/get_brain_mesh.html)
-for the inflated cortical mesh bundled with the core packages, whose
-faces are 0-based, and `ggseg3d::resolve_brain_mesh()`, which resolves
-these surfaces for 3D rendering.
+`ggseg.formats::get_brain_mesh()` for the inflated cortical mesh bundled
+with the core packages, whose faces are 0-based, and
+`ggseg3d::resolve_brain_mesh()`, which resolves these surfaces for 3D
+rendering.
 
 Other cortical meshes:
 [`available_cortical_surfaces()`](https://ggsegverse.github.io/ggseg.meshes/reference/available_cortical_surfaces.md)
