@@ -13,7 +13,7 @@ surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 
     <a class="navbar-brand me-2" href="../index.html">ggseg.meshes</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,24 +71,39 @@ surface type. All surfaces are fsaverage5 resolution (10,242 vertices,
 </dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
-    <p>A list with <code>vertices</code> (data.frame with x, y, z, in the rotated
-convention described above) and <code>faces</code> (data.frame with i, j, k, 1-based
-indices). Has attribute <code>face_index_base = 1L</code>.</p>
+    <p>A list with <code>vertices</code> (data.frame with x, y, z, in FreeSurfer's
+native axes) and <code>faces</code> (data.frame with i, j, k, 1-based indices). Has
+attributes <code>face_index_base = 1L</code> and <code>mesh_space</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
-    <p>The stored coordinates are rotated 90 degrees from FreeSurfer's native axes,
-so they do not mean what the names x, y, z usually mean on a
-FreeSurfer-derived surface. <code>x</code> is the anterior-posterior axis (positive
-anterior), <code>y</code> is the left-right axis (positive left, so the left hemisphere
-sits at positive <code>y</code>), and <code>z</code> is the superior-inferior axis (positive
-superior, unrotated). Plotting <code>x</code> against <code>z</code> therefore gives a lateral
-view with anterior to the right and superior at the top; plotting <code>y</code>
-against <code>z</code> gives a coronal view.</p>
+    <p>Coordinates are FreeSurfer's own: <code>x</code> is left-right (negative left), <code>y</code> is
+anterior-posterior (positive anterior) and <code>z</code> is superior-inferior
+(positive superior). Plotting <code>y</code> against <code>z</code> gives a lateral view with
+anterior to the right; <code>x</code> against <code>z</code> gives a coronal view.</p>
+<p>Each mesh carries a <code><a href="https://ggsegverse.github.io/ggseg.formats/reference/mesh_space.html" class="external-link">ggseg.formats::mesh_space()</a></code>, read with
+<code><a href="https://ggsegverse.github.io/ggseg.formats/reference/set_mesh_space.html" class="external-link">ggseg.formats::get_mesh_space()</a></code>, recording its vertex space, hemisphere,
+whether the coordinates are anatomical, and the mapping to MNI305. Reading
+that is how a consumer places a point without knowing where the mesh came
+from. <code>pial</code>, <code>white</code>, <code>smoothwm</code>, <code>orig</code> and <code>midthickness</code> are anatomical
+and map to MNI305 by the identity, fsaverage being an MNI305 average;
+<code>semi-inflated</code> and <code>sphere</code> have had every vertex moved and so record no
+mapping at all.</p>
+    </div>
+    <div class="section level2">
+    <h2 id="coordinates-changed-in-">Coordinates changed in 0.0.1.9002<a class="anchor" aria-label="anchor" href="#coordinates-changed-in-"></a></h2>
+
+
+<p>Before that version the stored coordinates were rotated 90 degrees from
+FreeSurfer's native axes – stored <code>x</code> was anterior-posterior and stored
+<code>y</code> was left-right – and <code>ggseg3d</code> rotated them back, so the pair was a
+round trip to identity for the only consumer there was. Code that read
+these meshes directly and relied on the rotated convention needs its axes
+swapped: old <code>x</code> is now <code>y</code>, and old <code>y</code> is now <code>-x</code>.</p>
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code>ggseg.formats::get_brain_mesh()</code> for the inflated cortical mesh
+    <div class="dont-index"><p><code><a href="https://ggsegverse.github.io/ggseg.formats/reference/get_brain_mesh.html" class="external-link">ggseg.formats::get_brain_mesh()</a></code> for the inflated cortical mesh
 bundled with the core packages, whose faces are 0-based, and
 <code>ggseg3d::resolve_brain_mesh()</code>, which resolves these surfaces for 3D
 rendering.</p>
@@ -102,14 +117,24 @@ rendering.</p>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">mesh</span>, max.level <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> List of 2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ vertices:'data.frame':	10242 obs. of  3 variables:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ x: num [1:10242] -19.3434 -69.0612 -9.2333 43.1149 0.0493 ...</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ y: num [1:10242] 38.74 16.66 9.72 24.02 59.86 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ x: num [1:10242] -38.74 -16.66 -9.72 -24.02 -59.86 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ y: num [1:10242] -19.3434 -69.0612 -9.2333 43.1149 0.0493 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ z: num [1:10242] 67.22 61.28 46.58 23.93 8.97 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  $ faces   :'data.frame':	20480 obs. of  3 variables:</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ i: int [1:20480] 1 1 1 1 1 4 4 4 5 5 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ j: int [1:20480] 2565 2563 2566 2568 2570 2575 2573 2576 2582 2580 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ k: int [1:20480] 2563 2566 2568 2570 2565 2573 2576 2578 2580 2583 ...</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "face_index_base")= int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  - attr(*, "mesh_space")=List of 8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ schema_version: int 1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ vertex_space  : chr "fsaverage5"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ hemi          : chr "left"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ anatomical    : logi TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ to_mni305     : num [1:4, 1:4] 1 0 0 0 0 1 0 0 0 0 ...</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ units         : chr "mm"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ surface       : chr "pial"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..$ source        : chr "freesurfer-macOS-darwin_arm64-8.2.0-20260314-d932c45 fsaverage5 lh.pial"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   ..- attr(*, "class")= chr "mesh_space"</span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">mesh</span><span class="op">$</span><span class="va">faces</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   i    j    k</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1 1 2565 2563</span>

@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggseg.meshes</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9002</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,19 +42,25 @@
 
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="development version" id="ggsegmeshes-development-version">ggseg.meshes (development version)<a class="anchor" aria-label="anchor" href="#ggsegmeshes-development-version"></a></h2>
-<ul><li>Vignette figures and the package logo are written as 8-bit palette PNGs, and the logo is additionally resized to its display size, cutting the source tarball from 5.3 MB to under 2.5 MB and back below the CRAN 5 MB limit. The figures are unchanged in size and content.</li>
-<li>
-<code><a href="../reference/get_cortical_mesh.html">get_cortical_mesh()</a></code> now documents its coordinate convention: the meshes are rotated 90 degrees from FreeSurfer’s native axes, so <code>x</code> is anterior-posterior and <code>y</code> is left-right.</li>
-<li>Documented that the cortical face table matches the ggseg.formats inflated mesh in connectivity but not in index base: it is 1-based, that one 0-based.</li>
-<li>Corrected <code><a href="../reference/get_cerebellar_flatmap.html">get_cerebellar_flatmap()</a></code>’s documentation: the flatmap is the first 28,935 vertices of the 30,013-vertex SUIT 3D pial surface, not a vertex-for-vertex match, and its <code>z</code> is exactly zero.</li>
-<li>
-<code>face_index_base</code> is now verified against the stored faces instead of being stamped on as a literal; an inconsistent mesh errors rather than shipping a wrong attribute.</li>
-<li>The <code>data-raw/</code> scripts now share <code>data-raw/save_sysdata.R</code>, so re-running either one can no longer drop the other’s meshes from <code>R/sysdata.rda</code>.</li>
-<li>Recorded the remaining <code>data-raw/</code> dependencies in <code>Config/Needs/data-raw</code>.</li>
-<li>Dropped <code>ggseg.formats</code> from <code>Suggests</code>; it was referenced only in prose.</li>
-<li>Moved <code>freesurfer</code>, <code>freesurferformats</code> and <code>gifti</code> from <code>Suggests</code> to <code>Config/Needs/data-raw</code>, and recorded <code>magick</code> there too. All four are used only by the mesh- and figure-building scripts in <code>data-raw/</code>, which is not part of the built package, so checking or installing <code>ggseg.meshes</code> no longer asks for them.</li>
-<li>Documentation is regenerated with roxygen2 8.1.0, matching the rest of the ggsegverse packages.</li>
+<div class="section level3">
+<h3 id="breaking-changes-development-version">Breaking changes<a class="anchor" aria-label="anchor" href="#breaking-changes-development-version"></a></h3>
+<ul><li>Cortical coordinates are FreeSurfer’s native axes: <code>x</code> left-right, <code>y</code> anterior-posterior, <code>z</code> superior-inferior. They were stored rotated 90 degrees, and <code>ggseg3d</code> rotated them back, so the pair was a round trip to identity for the only consumer there was. Code reading these meshes directly and relying on the rotated convention needs its axes swapped: old <code>x</code> is now <code>y</code>, old <code>y</code> is now <code>-x</code>. Faces are unchanged, so atlas vertex indices still address the same vertices.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="new-features-development-version">New features<a class="anchor" aria-label="anchor" href="#new-features-development-version"></a></h3>
+<ul><li><p>Every mesh carries a <code><a href="https://ggsegverse.github.io/ggseg.formats/reference/mesh_space.html" class="external-link">ggseg.formats::mesh_space()</a></code> recording its vertex space, hemisphere, whether the coordinates are anatomical and the mapping to MNI305, so a consumer places a point from what the mesh says rather than from which package it came from. <code>pial</code>, <code>white</code>, <code>smoothwm</code>, <code>orig</code> and <code>midthickness</code> map to MNI305 by the identity; <code>semi-inflated</code> and <code>sphere</code> record no mapping, every vertex having been moved.</p></li>
+<li><p>Surfaces are read through <code>ggseg.extra::read_surface_mesh()</code>, so the ecosystem decides in one place how to read a surface and what its faces count from. <code>save_sysdata()</code> now refuses a mesh that records no frame, or an anatomical one with no mapping.</p></li>
+<li><p>Vignette figures and the package logo are written as 8-bit palette PNGs, and the logo is additionally resized to its display size, cutting the source tarball from 5.3 MB to under 2.5 MB and back below the CRAN 5 MB limit. The figures are unchanged in size and content.</p></li>
+<li><p>Documented that the cortical face table matches the ggseg.formats inflated mesh in connectivity but not in index base: it is 1-based, that one 0-based.</p></li>
+<li><p>Corrected <code><a href="../reference/get_cerebellar_flatmap.html">get_cerebellar_flatmap()</a></code>’s documentation: the flatmap is the first 28,935 vertices of the 30,013-vertex SUIT 3D pial surface, not a vertex-for-vertex match, and its <code>z</code> is exactly zero.</p></li>
+<li><p><code>face_index_base</code> is now verified against the stored faces instead of being stamped on as a literal; an inconsistent mesh errors rather than shipping a wrong attribute.</p></li>
+<li><p>The <code>data-raw/</code> scripts now share <code>data-raw/save_sysdata.R</code>, so re-running either one can no longer drop the other’s meshes from <code>R/sysdata.rda</code>.</p></li>
+<li><p>Recorded the remaining <code>data-raw/</code> dependencies in <code>Config/Needs/data-raw</code>.</p></li>
+<li><p>Dropped <code>ggseg.formats</code> from <code>Suggests</code>; it was referenced only in prose.</p></li>
+<li><p>Moved <code>freesurfer</code>, <code>freesurferformats</code> and <code>gifti</code> from <code>Suggests</code> to <code>Config/Needs/data-raw</code>, and recorded <code>magick</code> there too. All four are used only by the mesh- and figure-building scripts in <code>data-raw/</code>, which is not part of the built package, so checking or installing <code>ggseg.meshes</code> no longer asks for them.</p></li>
+<li><p>Documentation is regenerated with roxygen2 8.1.0, matching the rest of the ggsegverse packages.</p></li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.0.1" id="ggsegmeshes-001">ggseg.meshes 0.0.1<a class="anchor" aria-label="anchor" href="#ggsegmeshes-001"></a></h2><p class="text-muted">CRAN release: 2026-04-09</p>
 <div class="section level3">

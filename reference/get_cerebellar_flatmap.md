@@ -55,6 +55,16 @@ str(mesh, max.level = 2)
 #>   ..$ j: int [1:56588] 1 7 138 1 7 162 2 8 139 140 ...
 #>   ..$ k: int [1:56588] 7 1 1 138 162 138 8 2 140 2 ...
 #>  - attr(*, "face_index_base")= int 0
+#>  - attr(*, "mesh_space")=List of 8
+#>   ..$ schema_version: int 1
+#>   ..$ vertex_space  : chr "suit"
+#>   ..$ hemi          : chr "midline"
+#>   ..$ anatomical    : logi FALSE
+#>   ..$ to_mni305     : NULL
+#>   ..$ units         : chr "mm"
+#>   ..$ surface       : chr "suit-flatmap"
+#>   ..$ source        : chr "SUIT tpl-SUIT_flat.surf.gii"
+#>   ..- attr(*, "class")= chr "mesh_space"
 head(mesh$faces)
 #>     i   j   k
 #> 1   0   1   7

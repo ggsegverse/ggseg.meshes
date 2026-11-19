@@ -61,23 +61,27 @@ SUIT cerebellar flatmap
 ## Accessing meshes
 
 Each mesh is a list with `vertices` (data.frame: x, y, z) and `faces`
-(data.frame: i, j, k). The cortical coordinates are rotated 90 degrees
-from FreeSurfer’s native axes, so `x` is anterior-posterior and `y` is
-left-right; see
+(data.frame: i, j, k). The cortical coordinates are FreeSurfer’s own:
+`x` is left-right, `y` is anterior-posterior and `z` is
+superior-inferior. Each mesh also carries a
+[`ggseg.formats::mesh_space()`](https://ggsegverse.github.io/ggseg.formats/reference/mesh_space.html)
+recording its vertex space, hemisphere, and mapping to MNI305, so a
+consumer can place a point without knowing which package the mesh came
+from. See
 [`?get_cortical_mesh`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cortical_mesh.md)
-for the full convention.
+for the full convention, including what changed in 0.0.1.9002.
 
 ``` r
 
 mesh <- get_cortical_mesh("lh", "pial")
 head(mesh$vertices)
-#>              x         y         z
-#> 1 -19.34336472 38.735958 67.220139
-#> 2 -69.06122589 16.662487 61.281273
-#> 3  -9.23326397  9.717618 46.580341
-#> 4  43.11487198 24.019428 23.926214
-#> 5   0.04929276 59.861500  8.974564
-#> 6 -49.40507889 50.645546 47.813751
+#>            x            y         z
+#> 1 -38.735958 -19.34336472 67.220139
+#> 2 -16.662487 -69.06122589 61.281273
+#> 3  -9.717618  -9.23326397 46.580341
+#> 4 -24.019428  43.11487198 23.926214
+#> 5 -59.861500   0.04929276  8.974564
+#> 6 -50.645546 -49.40507889 47.813751
 head(mesh$faces)
 #>   i    j    k
 #> 1 1 2565 2563
