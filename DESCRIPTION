@@ -20,7 +20,7 @@ Depends:
 Imports:
     cli
 Suggests:
-    ggseg.formats (>= 0.0.4.9031),
+    ggseg.formats (>= 0.0.4.9032),
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
