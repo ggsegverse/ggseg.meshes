@@ -28,7 +28,7 @@ anterior-posterior (positive anterior) and \code{z} is superior-inferior
 (positive superior). Plotting \code{y} against \code{z} gives a lateral view with
 anterior to the right; \code{x} against \code{z} gives a coronal view.
 
-Each mesh carries a \code{\link[ggseg.formats:mesh_space]{ggseg.formats::mesh_space()}}, read with
+Each mesh carries a \code{ggseg.formats::mesh_space()}, read with
 \code{ggseg.formats::get_mesh_space()}, recording its vertex space, hemisphere,
 whether the coordinates are anatomical, and the mapping to MNI305. Reading
 that is how a consumer places a point without knowing where the mesh came

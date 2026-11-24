@@ -6,7 +6,7 @@ describe("every shipped cortical mesh describes itself", {
   # came from to read them -- and a mesh read wrongly still renders a
   # convincing brain.
   it("records vertex space, hemisphere and surface", {
-    skip_if_not_installed("ggseg.formats")
+    skip_if_not_installed("ggseg.formats", "0.0.4.9032")
     expected_hemi <- c(lh = "left", rh = "right")
 
     for (surface in available_cortical_surfaces()) {
@@ -22,7 +22,7 @@ describe("every shipped cortical mesh describes itself", {
   })
 
   it("maps the anatomical surfaces to MNI305 and the others not at all", {
-    skip_if_not_installed("ggseg.formats")
+    skip_if_not_installed("ggseg.formats", "0.0.4.9032")
 
     for (surface in available_cortical_surfaces()) {
       space <- ggseg.formats::get_mesh_space(get_cortical_mesh("lh", surface))
@@ -66,7 +66,7 @@ describe("cortical coordinates are FreeSurfer's native axes", {
 
 describe("the cerebellar flatmap records that it is flat", {
   it("is not anatomical and maps nowhere", {
-    skip_if_not_installed("ggseg.formats")
+    skip_if_not_installed("ggseg.formats", "0.0.4.9032")
     space <- ggseg.formats::get_mesh_space(get_cerebellar_flatmap())
     expect_false(space$anatomical)
     expect_null(space$to_mni305)

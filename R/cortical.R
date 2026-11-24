@@ -19,7 +19,7 @@
 #' (positive superior). Plotting `y` against `z` gives a lateral view with
 #' anterior to the right; `x` against `z` gives a coronal view.
 #'
-#' Each mesh carries a [ggseg.formats::mesh_space()], read with
+#' Each mesh carries a `ggseg.formats::mesh_space()`, read with
 #' `ggseg.formats::get_mesh_space()`, recording its vertex space, hemisphere,
 #' whether the coordinates are anatomical, and the mapping to MNI305. Reading
 #' that is how a consumer places a point without knowing where the mesh came
@@ -69,8 +69,7 @@ get_cortical_mesh <- function(
     "semi-inflated" = brain_mesh_semi_inflated,
     "sphere" = brain_mesh_sphere,
     "smoothwm" = brain_mesh_smoothwm,
-    "orig" = brain_mesh_orig,
-    cli::cli_abort("Unknown surface: {.val {surface}}")
+    "orig" = brain_mesh_orig
   )
 
   with_face_index_base(

@@ -48,6 +48,15 @@
 - Documentation is regenerated with roxygen2 8.1.0, matching the rest of the
   ggsegverse packages.
 
+## Bug fixes
+
+- The `mesh_space` tests now require `ggseg.formats (>= 0.0.4.9032)` to skip
+  on, instead of erroring against a release that has no `get_mesh_space()`.
+- Dropped the `ggseg.formats::mesh_space()` cross-reference anchor from
+  `get_cortical_mesh()`; it was a missing link until that version is released.
+- Removed the unreachable `switch()` fallbacks in `get_cortical_mesh()` and
+  `get_cerebellar_flatmap()`; `match.arg()` has already rejected the input.
+
 # ggseg.meshes 0.0.1
 
 ## New features
