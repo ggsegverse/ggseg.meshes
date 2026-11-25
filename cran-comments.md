@@ -2,6 +2,9 @@
 
 0 errors | 0 warnings | 0 notes
 
+Checked against a library WITHOUT a dev `ggseg.formats`, which is the
+situation on CRAN: the three `mesh_space` tests skip, 188 assertions pass.
+
 ## Test environments
 
 - local macOS (aarch64-apple-darwin20), R 4.5.1
