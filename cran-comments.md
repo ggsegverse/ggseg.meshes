@@ -2,8 +2,13 @@
 
 0 errors | 0 warnings | 0 notes
 
-Checked against a library WITHOUT a dev `ggseg.formats`, which is the
-situation on CRAN: the three `mesh_space` tests skip, 188 assertions pass.
+Checked with `_R_CHECK_FORCE_SUGGESTS_=false`: `ggseg.formats` is suggested at
+a development version that is not on CRAN yet, and an installed-but-older
+`Suggests` is a hard ERROR at "checking package dependencies" without that
+flag. With it, the three `mesh_space` tests skip and 188 assertions pass.
+
+BEFORE SUBMITTING: `ggseg.formats` goes to CRAN first. Move this floor to its
+released version once it is accepted, so the check passes without the flag.
 
 ## Test environments
 
