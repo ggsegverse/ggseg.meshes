@@ -1,5 +1,11 @@
 # ggseg.meshes (development version)
 
+- The `ggseg.formats` floor is no longer pinned in `Suggests`. No code in `R/`
+  calls `ggseg.formats`, so the floor only ever served the tests -- but an
+  unsatisfiable `Suggests` version makes `R CMD check` stop at "checking
+  package dependencies" before a single test runs, which is exactly what it
+  did on CRAN. The three tests that need the version carry it themselves.
+
 ## Breaking changes
 
 - Cortical coordinates are FreeSurfer's native axes: `x` left-right, `y`
