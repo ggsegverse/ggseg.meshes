@@ -66,6 +66,24 @@
 - Documentation is regenerated with roxygen2 8.1.0, matching the rest of
   the ggsegverse packages.
 
+### Bug fixes
+
+- The `mesh_space` tests now require `ggseg.formats (>= 0.0.4.9032)` to
+  skip on, instead of erroring against a release that has no
+  `get_mesh_space()`.
+- Dropped the
+  [`ggseg.formats::mesh_space()`](https://ggsegverse.github.io/ggseg.formats/reference/mesh_space.html)
+  cross-reference anchor from
+  [`get_cortical_mesh()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cortical_mesh.md);
+  it was a missing link until that version is released.
+- Removed the unreachable
+  [`switch()`](https://rdrr.io/r/base/switch.html) fallbacks in
+  [`get_cortical_mesh()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cortical_mesh.md)
+  and
+  [`get_cerebellar_flatmap()`](https://ggsegverse.github.io/ggseg.meshes/reference/get_cerebellar_flatmap.md);
+  [`match.arg()`](https://rdrr.io/r/base/match.arg.html) has already
+  rejected the input.
+
 ## ggseg.meshes 0.0.1
 
 CRAN release: 2026-04-09

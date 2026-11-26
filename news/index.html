@@ -9,7 +9,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">ggseg.meshes</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9002</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.0.1.9003</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -59,6 +59,12 @@
 <li><p>Dropped <code>ggseg.formats</code> from <code>Suggests</code>; it was referenced only in prose.</p></li>
 <li><p>Moved <code>freesurfer</code>, <code>freesurferformats</code> and <code>gifti</code> from <code>Suggests</code> to <code>Config/Needs/data-raw</code>, and recorded <code>magick</code> there too. All four are used only by the mesh- and figure-building scripts in <code>data-raw/</code>, which is not part of the built package, so checking or installing <code>ggseg.meshes</code> no longer asks for them.</p></li>
 <li><p>Documentation is regenerated with roxygen2 8.1.0, matching the rest of the ggsegverse packages.</p></li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes-development-version">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-development-version"></a></h3>
+<ul><li>The <code>mesh_space</code> tests now require <code>ggseg.formats (&gt;= 0.0.4.9032)</code> to skip on, instead of erroring against a release that has no <code>get_mesh_space()</code>.</li>
+<li>Dropped the <code><a href="https://ggsegverse.github.io/ggseg.formats/reference/mesh_space.html" class="external-link">ggseg.formats::mesh_space()</a></code> cross-reference anchor from <code><a href="../reference/get_cortical_mesh.html">get_cortical_mesh()</a></code>; it was a missing link until that version is released.</li>
+<li>Removed the unreachable <code><a href="https://rdrr.io/r/base/switch.html" class="external-link">switch()</a></code> fallbacks in <code><a href="../reference/get_cortical_mesh.html">get_cortical_mesh()</a></code> and <code><a href="../reference/get_cerebellar_flatmap.html">get_cerebellar_flatmap()</a></code>; <code><a href="https://rdrr.io/r/base/match.arg.html" class="external-link">match.arg()</a></code> has already rejected the input.</li>
 </ul></div>
 </div>
     <div class="section level2">
